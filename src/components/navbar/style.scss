@@ -1,0 +1,40 @@
+@import "../../styles/variables.scss";
+
+.navbar {
+  width: 100%;
+  padding: 32px 32px 0;
+  background-color: $Purple;
+  justify-content: center;
+
+  &-wrapper {
+    width: 100%;
+    max-width: 1280px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-links {
+    gap: 36px;
+  }
+
+  &-anchor-link {
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-weight: bold;
+    color: $White;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      color: $Black;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    &-links {
+      display: none !important;
+    }
+  }
+}

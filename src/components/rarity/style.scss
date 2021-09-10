@@ -1,0 +1,189 @@
+@import "../../styles/variables.scss";
+
+.rarity {
+  width: 100%;
+  padding: 64px calc((100vw - 1280px) / 2) 80px;
+  overflow: hidden;
+  gap: 32px;
+
+  &-ranking {
+    width: calc(50% - 64px);
+    padding-left: 64px;
+    margin-bottom: -256px;
+    font-size: 18px;
+    gap: 24px;
+
+    & > span {
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    &-policy {
+      & > span {
+        & > span {
+          font-weight: bold;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+  &-diagram {
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
+
+    &-item {
+      width: 20%;
+      align-items: center;
+      gap: 8px;
+
+      &-progress {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        justify-content: flex-end;
+
+        & > div {
+          border-bottom: 2px solid rgba($color: $Black, $alpha: 0.7);
+          border-radius: 8px 8px 0 0;
+        }
+
+        &-bar {
+          &-bronze {
+            height: 10%;
+            background-color: $Bronze;
+            animation: expanding-bronze 2s ease-in-out 0.5s;
+          }
+
+          &-silver {
+            height: 40%;
+            background-color: $Silver;
+            animation: expanding-silver 2s ease-in-out 0.5s;
+          }
+
+          &-gold {
+            height: 70%;
+            background-color: $Gold;
+            animation: expanding-gold 2s ease-in-out 0.5s;
+          }
+
+          &-hof {
+            height: 100%;
+            background-color: $Purple;
+            animation: expanding-hof 2s ease-in-out 0.5s;
+          }
+        }
+
+        &-comment {
+          position: absolute;
+          width: 100%;
+          color: rgba($color: $White, $alpha: 0.7);
+          text-align: center;
+        }
+      }
+
+      & > span {
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  & > span {
+    width: 100%;
+    text-align: center;
+    color: $Black-dark;
+    font-size: 72px;
+    font-weight: bold;
+    margin-bottom: -130px;
+  }
+}
+
+@keyframes expanding-bronze {
+  from {
+    height: 0%;
+  }
+
+  to {
+    height: 10%;
+  }
+}
+
+@keyframes expanding-silver {
+  from {
+    height: 0%;
+  }
+
+  to {
+    height: 40%;
+  }
+}
+
+@keyframes expanding-gold {
+  from {
+    height: 0%;
+  }
+
+  to {
+    height: 70%;
+  }
+}
+
+@keyframes expanding-hof {
+  from {
+    height: 0%;
+  }
+
+  to {
+    height: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .rarity {
+    &-ranking {
+      width: 100%;
+      padding-left: 0;
+      margin-bottom: 32px;
+      font-size: 18px;
+      padding: 0 64px;
+      gap: 24px;
+
+      & > span {
+        font-size: 40px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .rarity {
+    &-ranking {
+      width: 100%;
+      padding-left: 0;
+      margin-bottom: 32px;
+      font-size: 18px;
+      padding: 0 8px;
+      gap: 24px;
+
+      & > span {
+        font-size: 40px;
+        font-weight: bold;
+      }
+    }
+
+    &-diagram {
+      width: 100%;
+      justify-content: center;
+      gap: 8px;
+
+      &-item {
+        width: calc(25% - 12px);
+        align-items: center;
+        gap: 8px;
+      }
+    }
+  }
+}

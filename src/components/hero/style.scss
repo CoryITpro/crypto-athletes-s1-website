@@ -1,0 +1,116 @@
+@import "../../styles/variables.scss";
+
+.hero {
+  width: 100%;
+  background-color: $Purple;
+  padding: 64px calc((100vw - 1280px) / 2) 0 calc((100vw - 1280px) / 2);
+
+  &-video {
+    width: 100%;
+    z-index: 1;
+  }
+
+  &-wallet {
+    margin: -48px 0 64px;
+    width: 100%;
+    padding: 0 64px;
+    align-items: center;
+    gap: 36px;
+    z-index: 2;
+
+    &-purchase {
+      width: 100%;
+      padding: 24px;
+      background-color: $Warning;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 16px;
+      gap: 128px;
+
+      &-ticker {
+        gap: 36px;
+        align-items: center;
+
+        & > span {
+          font-size: 18px;
+          font-weight: bold;
+        }
+
+        &-counts {
+          font-size: 32px !important;
+        }
+
+        & > p {
+          max-width: 360px;
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+
+      & > div {
+        border-radius: 100px;
+      }
+    }
+  }
+
+  &-congrats {
+    width: 100%;
+    color: $Purple;
+    font-weight: bold;
+    font-size: 40px;
+    justify-content: center;
+    text-align: center;
+    padding: 24px 0;
+    background-color: $Warning;
+
+    & > div {
+      border-radius: 100px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    &-wallet {
+      padding: 0 32px;
+
+      &-purchase {
+        gap: 64px;
+
+        &-ticker {
+          flex-direction: column !important;
+          gap: 12px;
+
+          & > p {
+            margin: 0;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    &-congrats {
+      font-size: 32px;
+      padding: 20px 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    &-wallet {
+      padding: 0 8px;
+
+      &-purchase {
+        padding: 16px;
+        flex-direction: column !important;
+        gap: 32px;
+      }
+    }
+
+    &-congrats {
+      font-size: 24px;
+      padding: 16px 0;
+    }
+  }
+}

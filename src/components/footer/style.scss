@@ -1,0 +1,73 @@
+@import "../../styles/variables.scss";
+
+.footer {
+  width: 100%;
+  padding: 64px calc((100vw - 1280px) / 2);
+  justify-content: space-around;
+  background-color: $Purple;
+
+  &-contacts {
+    gap: 36px;
+
+    & > a {
+      color: $White;
+      text-decoration: none;
+
+      & > svg {
+        font-size: 48px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-email {
+    & > a {
+      color: $White;
+      text-decoration: none;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    padding: 32px calc((100vw - 1280px) / 2);
+
+    &-contacts {
+      gap: 24px;
+
+      & > a {
+        & > svg {
+          font-size: 32px;
+        }
+      }
+    }
+
+    &-email {
+      & > a {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 24px calc((100vw - 1280px) / 2);
+
+    &-contacts {
+      gap: 12px;
+
+      & > a {
+        & > svg {
+          font-size: 24px;
+        }
+      }
+    }
+
+    &-email {
+      & > a {
+        font-size: 12px;
+      }
+    }
+  }
+}
