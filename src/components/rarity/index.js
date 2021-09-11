@@ -2,6 +2,12 @@ import "./style.scss"
 
 import { Raritys } from "constants/index"
 
+import BRONZE from "resources/categories/Bronze_Site_Preview.jpg"
+import SILVER from "resources/categories/Silver_Site_Preview.jpg"
+import GOLD from "resources/categories/Gold_Site_Preview.jpg"
+import HOF from "resources/categories/Hall_Of_Fame_Site_Preview.jpg"
+import MASTERCARD from "resources/categories/MasterCard_Site_Preview.jpg"
+
 const generateRarity = () =>
   Raritys.map((data, index) => (
     <div key={index} className="rarity-diagram-item flex flex-column">
@@ -19,7 +25,28 @@ const generateRarity = () =>
 
 const Rarity = () => (
   <div className="rarity flex flex-column">
-    <div className="rarity-classes"></div>
+    <div className="rarity-classes flex">
+      <div className="flex flex-column">
+        <img className="bronze" src={BRONZE} alt="bronze" />
+        <span>Bronze</span>
+      </div>
+      <div className="flex flex-column">
+        <img className="silver" src={SILVER} alt="silver" />
+        <span>Silver</span>
+      </div>
+      <div className="flex flex-column">
+        <img className="gold" src={GOLD} alt="gold" />
+        <span>Gold</span>
+      </div>
+      <div className="flex flex-column">
+        <img className="hof" src={HOF} alt="hall of fame" />
+        <span>Hall of Fame</span>
+      </div>
+      <div className="flex flex-column">
+        <img className="mastercard" src={MASTERCARD} alt="mastercard" />
+        <span>Master Card</span>
+      </div>
+    </div>
     <div className="rarity-ranking flex flex-column">
       <span>Our Ranking System</span>
       <div className="rarity-ranking-comment">

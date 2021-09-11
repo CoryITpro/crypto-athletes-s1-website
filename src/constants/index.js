@@ -15,6 +15,7 @@ export const Raritys = [
     title: "HOF",
     comment: "Score of 9.6 up to 10",
   },
+  { title: "MasterCard", comment: "Only one for a team. Extremely valuable" },
 ]
 
 export const Roadmaps = [

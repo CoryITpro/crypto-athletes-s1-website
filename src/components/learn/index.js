@@ -7,7 +7,7 @@ const Learn = () => (
     <div className="learn-wrapper flex">
       <div className="learn-wrapper-comments flex flex-column">
         <div className="learn-wrapper-comments-title">
-          What are Crypto Althelets?
+          What are Crypto Athletes?
         </div>
         <div className="learn-wrapper-comments-content">
           CryptoAthletes are 10,000 unique players balling on the Ethereum
