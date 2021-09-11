@@ -308,12 +308,12 @@
     &-diagram {
       width: 100%;
       justify-content: center;
-      gap: 8px;
+      gap: 4px;
 
       &-item {
-        width: calc(25% - 12px);
+        width: calc(20% - 6px);
         align-items: center;
-        gap: 8px;
+        gap: 4px;
 
         & > span {
           font-size: 16px;
