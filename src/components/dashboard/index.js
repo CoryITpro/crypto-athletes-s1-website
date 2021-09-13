@@ -11,14 +11,19 @@ import Roadmap from "components/roadmap"
 import FAQ from "components/faq"
 import Footer from "components/footer"
 
+import Alert from "components/alert"
+
 const Dashboard = ({
   soldOutCounts,
   walletAddress,
   onConnect,
   onClickExpand,
   expanded,
+  error,
+  onAlertClickHandler,
 }) => (
   <div className="dashboard">
+    <Alert error={error} onClickHandler={onAlertClickHandler} />
     <div
       className={`dashboard-expand-menu flex flex-column${
         expanded ? " expanded" : ""

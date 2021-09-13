@@ -1,11 +1,11 @@
-import dotenv from "dotenv"
 import { pinJSONToIPFS, pinFileToIPFS, removePinFromIPFS } from "./pinata"
 import { ethers } from "ethers"
 import axios from "axios"
 
 import itemMetadata from "constants/item-meta.json"
 import contractABI from "constants/contract-abi.json"
-dotenv.config()
+
+import { Envs } from "configurations"
 
 export const connectWallet = async () => {
   if (window.ethereum) {
@@ -13,7 +13,8 @@ export const connectWallet = async () => {
       const walletChainId = await window.ethereum.request({
         method: "eth_chainId",
       })
-      if (parseInt(walletChainId) === process.env.CHAIN_ID) {
+
+      if (parseInt(walletChainId) === Envs.CHAIN_ID) {
         const addressArray = await window.ethereum.request({
           method: "eth_requestAccounts",
         })
@@ -21,23 +22,23 @@ export const connectWallet = async () => {
         if (addressArray.length) {
           return {
             address: addressArray[0],
-            status: "Get your CryptoAthletes pack, 0.05ETH",
+            status: "Connected",
           }
         } else {
           return {
             address: "",
-            status: "Connect Metamask",
+            status: "No wallet connected",
           }
         }
       } else {
         window.ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{ chainId: process.env.CHAIN_ID }],
+          params: [{ chainId: Envs.CHAIN_ID }],
         })
 
         return {
           address: "",
-          status: "Connect Metamask",
+          status: "Was on the other chain",
         }
       }
     } catch (err) {
@@ -67,10 +68,10 @@ export const getCurrentWalletConnected = async () => {
       const addressArray = await window.ethereum.request({
         method: "eth_accounts",
       })
-      const chainId = await window.ethereum.request({
+      const walletChainId = await window.ethereum.request({
         method: "eth_chainId",
       })
-      if (addressArray.length && chainId === process.env.CHAIN_ID) {
+      if (addressArray.length && walletChainId === Envs.CHAIN_ID) {
         return {
           address: addressArray[0],
           status: "Get your CryptoAthletes pack, 0.05ETH",
@@ -105,7 +106,7 @@ export const getCurrentWalletConnected = async () => {
 export const mintNFT = async (walletAddress) => {
   const infuraProvider = new ethers.providers.InfuraProvider("kovan")
   const contract = new ethers.Contract(
-    process.env.CONTRACT_ADDRESS,
+    Envs.CONTRACT_ADDRESS,
     contractABI,
     infuraProvider
   )
@@ -128,7 +129,7 @@ export const mintNFT = async (walletAddress) => {
   const dataParam = interFace.encodeFunctionData("mintPack", [tokenURI])
 
   const transactionParameters = {
-    to: process.env.CONTRACT_ADDRESS,
+    to: Envs.CONTRACT_ADDRESS,
     from: walletAddress,
     data: dataParam,
   }
@@ -170,7 +171,7 @@ export const getMetaList = async (walletAddress, tokenIds = []) => {
 
   const infuraProvider = new ethers.providers.InfuraProvider("kovan")
   const contract = new ethers.Contract(
-    process.env.CONTRACT_ADDRESS,
+    Envs.CONTRACT_ADDRESS,
     contractABI,
     infuraProvider
   )

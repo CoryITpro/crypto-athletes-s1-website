@@ -29,6 +29,10 @@
         font-size: 48px;
         cursor: pointer;
       }
+
+      &:hover {
+        color: $Gold;
+      }
     }
   }
 

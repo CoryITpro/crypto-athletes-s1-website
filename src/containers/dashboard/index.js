@@ -1,8 +1,4 @@
 import { useState, useEffect } from "react"
-import { ethers } from "ethers"
-import { pinJSONToIPFS } from "helpers/pinata"
-import itemMeta from "constants/item-meta.json"
-
 import DashboardComponent from "components/dashboard"
 
 import {
@@ -22,6 +18,7 @@ const Dashboard = () => {
   const [newMint, setNewMint] = useState([])
 
   const [collapseExpanded, setCollapseExpanded] = useState(false)
+  const [error, setError] = useState("")
 
   const getWindowWidth = () => {
     const { innerWidth: width } = window
@@ -34,9 +31,12 @@ const Dashboard = () => {
     setCollapseExpanded(!collapseExpanded)
   }
 
+  const onAlertClickHandler = () => {
+    setError("")
+  }
+
   const onConnectWallet = async () => {
     const walletResponse = await connectWallet()
-    console.log(walletResponse)
     setStatus(walletResponse.status)
     setWalletAddress(walletResponse.address)
   }
@@ -73,6 +73,7 @@ const Dashboard = () => {
     setStatus(status)
 
     onChangeWalletListener()
+    onConnectWallet()
 
     window.addEventListener("resize", getWindowWidth)
     return () => window.removeEventListener("resize", getWindowWidth)
@@ -111,6 +112,8 @@ const Dashboard = () => {
       onMint={onMintHandler}
       onClickExpand={onClickExpand}
       expanded={collapseExpanded}
+      error={error}
+      onAlertClickHandler={onAlertClickHandler}
     />
   )
 }
