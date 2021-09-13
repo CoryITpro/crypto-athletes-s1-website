@@ -32,6 +32,7 @@
   }
 
   &-ranking {
+    position: relative;
     width: calc(50% - 64px);
     padding-left: 64px;
     margin-bottom: -256px;
@@ -50,6 +51,12 @@
           margin-right: 8px;
         }
       }
+    }
+
+    & > img {
+      position: absolute;
+      width: 360px;
+      left: calc(100% + 48px);
     }
   }
 
@@ -119,15 +126,6 @@
         font-weight: bold;
       }
     }
-  }
-
-  & > span {
-    width: 100%;
-    text-align: center;
-    color: $Black-dark;
-    font-size: 72px;
-    font-weight: bold;
-    margin-bottom: -130px;
   }
 }
 
@@ -258,6 +256,11 @@
         font-size: 40px;
         font-weight: bold;
       }
+
+      & > img {
+        left: 64px;
+        top: 100%;
+      }
     }
 
     &-diagram {
@@ -266,6 +269,18 @@
           font-size: 20px;
           font-weight: bold;
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .rarity {
+    &-ranking {
+      & > img {
+        width: 45%;
+        left: 32px;
+        top: 100%;
       }
     }
   }
@@ -286,33 +301,31 @@
         }
 
         & > img {
-          border-radius: 16px;
+          border-radius: 8px;
         }
       }
     }
 
     &-ranking {
-      width: 100%;
-      padding-left: 0;
-      margin-bottom: 32px;
       font-size: 18px;
       padding: 0 8px;
       gap: 24px;
 
       & > span {
         font-size: 40px;
-        font-weight: bold;
+      }
+
+      & > img {
+        width: 240px;
+        left: 8px;
+        top: 100%;
       }
     }
 
     &-diagram {
-      width: 100%;
-      justify-content: center;
       gap: 4px;
 
       &-item {
-        width: calc(20% - 6px);
-        align-items: center;
         gap: 4px;
 
         & > span {

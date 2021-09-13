@@ -2,16 +2,14 @@
 
 .hero {
   width: 100%;
-  background-color: $Purple;
-  padding: 64px calc((100vw - 1280px) / 2) 0 calc((100vw - 1280px) / 2);
+  padding: 128px calc((100vw - 1280px) / 2) 0 calc((100vw - 1280px) / 2);
 
-  &-video {
-    width: 100%;
-    z-index: 1;
+  & > img {
+    padding: 0 64px;
   }
 
   &-wallet {
-    margin: -48px 0 64px;
+    margin: 0 0 64px;
     width: 100%;
     padding: 0 64px;
     align-items: center;
@@ -71,6 +69,10 @@
 
 @media (max-width: 1024px) {
   .hero {
+    & > img {
+      padding: 0 32px;
+    }
+
     &-wallet {
       padding: 0 32px;
 
@@ -98,6 +100,10 @@
 
 @media (max-width: 768px) {
   .hero {
+    & > img {
+      padding: 0 8px;
+    }
+
     &-wallet {
       padding: 0 8px;
 

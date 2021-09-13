@@ -1,6 +1,7 @@
 import "./style.scss"
 
 import { Roadmaps } from "constants/index"
+import ARTWORK_ROADMAP_3 from "resources/artworks/Artwork_Roadmap_3.png"
 
 const generateRoadmap = () =>
   Roadmaps.map((data, index) => (
@@ -12,6 +13,9 @@ const generateRoadmap = () =>
 
 const Roadmap = () => (
   <div className="roadmap flex flex-column">
+    <div className="roadmap-decoration flex">
+      <img src={ARTWORK_ROADMAP_3} alt="artwork roadmap" />
+    </div>
     <span>Roadmap</span>
     {generateRoadmap()}
   </div>

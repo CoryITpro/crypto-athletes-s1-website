@@ -2,9 +2,29 @@
 
 .navbar {
   width: 100%;
-  padding: 32px 32px 0;
-  background-color: $Purple;
+  padding: 64px 32px 0;
   justify-content: center;
+
+  &-logo {
+    align-items: center;
+
+    & > img {
+      width: 100px;
+      margin-top: -32px;
+    }
+
+    & > span {
+      color: $Gold;
+      font-size: 32px;
+      font-weight: bold;
+      text-shadow: 0 0 4px rgba($color: $Gold, $alpha: 0.5);
+
+      & > span {
+        color: $Magenta;
+        text-shadow: 0 0 4px rgba($color: $Magenta, $alpha: 0.5);
+      }
+    }
+  }
 
   &-wrapper {
     width: 100%;
@@ -26,13 +46,51 @@
     transition: 0.3s;
 
     &:hover {
-      color: $Black;
+      color: $Gold;
+    }
+  }
+
+  &-expand {
+    display: none;
+
+    & > svg {
+      color: $White;
+      font-size: 28px;
+      cursor: pointer;
+
+      &:hover {
+        color: $Gold;
+      }
     }
   }
 }
 
 @media (max-width: 1024px) {
   .navbar {
+    &-links {
+      display: none !important;
+    }
+
+    &-expand {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    &-logo {
+      & > img {
+        width: 72px;
+        margin-top: -24px;
+        margin-left: -16px;
+      }
+
+      & > span {
+        font-size: 24px;
+      }
+    }
+
     &-links {
       display: none !important;
     }

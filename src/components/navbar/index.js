@@ -1,12 +1,19 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-scroll"
 import "./style.scss"
 
-import LOGO from "resources/download.png"
+import LOGO from "resources/Logo.png"
 
-const Navbar = () => (
+const Navbar = ({ onClickExpand }) => (
   <div className="navbar flex">
     <div className="navbar-wrapper flex">
-      <img src={LOGO} alt="logo" className="navbar-logo" />
+      <div className="navbar-logo flex">
+        <img src={LOGO} alt="logo" className="navbar-logo" />
+        <span>
+          Crypto <span>Athletes</span>
+        </span>
+      </div>
       <div className="navbar-links flex">
         <Link
           className="navbar-anchor-link"
@@ -52,6 +59,9 @@ const Navbar = () => (
         >
           FAQs
         </Link>
+      </div>
+      <div className="navbar-expand">
+        <FontAwesomeIcon icon={faBars} onClick={onClickExpand} />
       </div>
     </div>
   </div>

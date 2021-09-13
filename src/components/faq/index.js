@@ -1,5 +1,7 @@
 import "./style.scss"
 
+import ARTWORK_ROADMAP_1 from "resources/artworks/Artwork_Roadmap_1.png"
+
 const FAQ = () => (
   <div className="faqs flex flex-column">
     <span>FAQS</span>
@@ -34,6 +36,9 @@ const FAQ = () => (
           </li>
         </ol>
       </div>
+    </div>
+    <div className="faqs-decoration flex">
+      <img src={ARTWORK_ROADMAP_1} alt="artwork" />
     </div>
   </div>
 )

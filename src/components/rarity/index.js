@@ -2,11 +2,13 @@ import "./style.scss"
 
 import { Raritys } from "constants/index"
 
-import BRONZE from "resources/categories/Bronze_Site_Preview.jpg"
-import SILVER from "resources/categories/Silver_Site_Preview.jpg"
-import GOLD from "resources/categories/Gold_Site_Preview.jpg"
-import HOF from "resources/categories/Hall_Of_Fame_Site_Preview.jpg"
-import MASTERCARD from "resources/categories/MasterCard_Site_Preview.jpg"
+import BRONZE from "resources/categories/Bronze_Site_Preview.png"
+import SILVER from "resources/categories/Silver_Site_Preview.png"
+import GOLD from "resources/categories/Gold_Site_Preview.png"
+import HOF from "resources/categories/Hall_Of_Fame_Site_Preview.png"
+import MASTERCARD from "resources/categories/MasterCard_Site_Preview.png"
+
+import ARTWORK_ROADMAP_2 from "resources/artworks/Artwork_Roadmap_2.png"
 
 const generateRarity = () =>
   Raritys.map((data, index) => (
@@ -62,8 +64,8 @@ const Rarity = () => (
           <li>Gold - score of 7 up to 9.5</li>
           <li>HOF - score of 9.6 to 10</li>
           <li>
-            Mastercard - the holder of ⅗ hall of fame players will earn their
-            self of mastercard.
+            Mastercard - the holder of ⅗ hall of fame players will earn
+            themselves of mastercard.
           </li>
         </ul>
         <span className="flex">
@@ -72,9 +74,9 @@ const Rarity = () => (
           earned through trading.
         </span>
       </div>
+      <img src={ARTWORK_ROADMAP_2} alt="rarity" />
     </div>
     <div className="rarity-diagram flex">{generateRarity()}</div>
-    <span>Roadmap</span>
   </div>
 )
 

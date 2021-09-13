@@ -1,3 +1,6 @@
+import { Link } from "react-scroll"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import "./style.scss"
 
 import Navbar from "components/navbar"
@@ -8,14 +11,80 @@ import Roadmap from "components/roadmap"
 import FAQ from "components/faq"
 import Footer from "components/footer"
 
-const Dashboard = ({ soldOutCounts, walletAddress, onConnect }) => (
+const Dashboard = ({
+  soldOutCounts,
+  walletAddress,
+  onConnect,
+  onClickExpand,
+  expanded,
+}) => (
   <div className="dashboard">
-    <Navbar />
-    <Hero
-      soldOutCounts={soldOutCounts}
-      walletAddress={walletAddress}
-      onConnect={onConnect}
-    />
+    <div
+      className={`dashboard-expand-menu flex flex-column${
+        expanded ? " expanded" : ""
+      }`}
+      onClick={onClickExpand}
+    >
+      <div className="dashboard-expand-menu-close">
+        <FontAwesomeIcon icon={faTimes} />
+      </div>
+      <Link
+        className="navbar-anchor-link"
+        activeClass="active"
+        to={"learn"}
+        spy={true}
+        smooth={true}
+        offset={0}
+        duration={500}
+        onClick={onClickExpand}
+      >
+        Learn
+      </Link>
+      <Link
+        className="navbar-anchor-link"
+        activeClass="active"
+        to={"rarity"}
+        spy={true}
+        smooth={true}
+        offset={50}
+        duration={500}
+        onClick={onClickExpand}
+      >
+        Rarity
+      </Link>
+      <Link
+        className="navbar-anchor-link"
+        activeClass="active"
+        to={"roadmap"}
+        spy={true}
+        smooth={true}
+        offset={-50}
+        duration={500}
+        onClick={onClickExpand}
+      >
+        Roadmap
+      </Link>
+      <Link
+        className="navbar-anchor-link"
+        activeClass="active"
+        to={"faqs"}
+        spy={true}
+        smooth={true}
+        offset={50}
+        duration={500}
+        onClick={onClickExpand}
+      >
+        FAQs
+      </Link>
+    </div>
+    <div className="dashboard-hero-wrapper">
+      <Navbar onClickExpand={onClickExpand} />
+      <Hero
+        soldOutCounts={soldOutCounts}
+        walletAddress={walletAddress}
+        onConnect={onConnect}
+      />
+    </div>
     <Learn />
     <Rarity />
     <Roadmap />

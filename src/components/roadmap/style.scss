@@ -8,16 +8,31 @@
   gap: 32px;
   overflow: hidden;
   align-items: center;
+  justify-content: center;
+
+  &-decoration {
+    padding: 0 64px;
+    width: 100%;
+    justify-content: flex-end;
+
+    & > img {
+      width: 360px;
+    }
+  }
 
   & > span {
+    width: 100%;
+    padding: 0 64px;
     font-size: 72px;
     font-weight: bold;
-    margin-top: -122px;
+    margin-top: -220px;
+    z-index: 2;
   }
 
   &-item {
     width: 100%;
     padding: 0 64px;
+    z-index: 2;
 
     &-percentage {
       font-size: 40px;
@@ -32,6 +47,18 @@
 
 @media (max-width: 1024px) {
   .roadmap {
+    &-decoration {
+      padding: 0 32px;
+
+      & > img {
+        width: 360px;
+      }
+    }
+
+    & > span {
+      padding: 0 32px;
+    }
+
     &-item {
       padding: 0 32px;
     }
@@ -40,6 +67,21 @@
 
 @media (max-width: 768px) {
   .roadmap {
+    &-decoration {
+      width: auto;
+      padding: 0 8px;
+
+      & > img {
+        width: 360px;
+      }
+    }
+
+    & > span {
+      margin-top: -32px;
+      padding: 0 8px;
+      font-size: 64px;
+    }
+
     &-item {
       padding: 0 8px;
 

@@ -2,15 +2,13 @@ import "./style.scss"
 
 import Button from "components/button"
 import Ticker from "./ticker"
-import VIDEO from "resources/header.mp4"
+import BANNER from "resources/Banner_Image.png"
 
 const Hero = ({ soldOutCounts, walletAddress, onConnect }) => {
   return (
     <>
       <div className="hero flex flex-column">
-        <video className="hero-video" autoPlay loop playsInline muted>
-          <source src={VIDEO} type="video/mp4" />
-        </video>
+        <img src={BANNER} alt="banner" />
         <div className="hero-wallet flex flex-column">
           <Ticker
             soldOutCounts={soldOutCounts}

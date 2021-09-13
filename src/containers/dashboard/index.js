@@ -1,35 +1,116 @@
 import { useState, useEffect } from "react"
-import { useWeb3React } from "@web3-react/core"
+import { ethers } from "ethers"
+import { pinJSONToIPFS } from "helpers/pinata"
+import itemMeta from "constants/item-meta.json"
 
-import { injectedConnector } from "helpers/index"
 import DashboardComponent from "components/dashboard"
 
-const Dashboard = () => {
-  const { active, account, library, connector, activate, deactivate } =
-    useWeb3React()
+import {
+  connectWallet,
+  getCurrentWalletConnected,
+  getMetaList,
+  mintNFT,
+} from "helpers/interact"
 
-  const [soldOutCounts, setSoldOutCounts] = useState(0)
+const Dashboard = () => {
   const [walletAddress, setWalletAddress] = useState("")
+  const [soldOutCounts, setSoldOutCounts] = useState(0)
+
+  const [status, setStatus] = useState("")
+  const [mintLoading, setMintLoading] = useState(false)
+  const [metaData, setMetaData] = useState([])
+  const [newMint, setNewMint] = useState([])
+
+  const [collapseExpanded, setCollapseExpanded] = useState(false)
+
+  const getWindowWidth = () => {
+    const { innerWidth: width } = window
+    if (width > 1024) {
+      setCollapseExpanded(false)
+    }
+  }
+
+  const onClickExpand = () => {
+    setCollapseExpanded(!collapseExpanded)
+  }
+
+  const onConnectWallet = async () => {
+    const walletResponse = await connectWallet()
+    console.log(walletResponse)
+    setStatus(walletResponse.status)
+    setWalletAddress(walletResponse.address)
+  }
+
+  const onChangeWalletListener = () => {
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", (accounts) => {
+        if (accounts.length) {
+          setWalletAddress(accounts[0])
+          setStatus("Get your CryptoAthletes pack, 0.05ETH")
+        } else {
+          setWalletAddress("")
+          setStatus("Connect Metamask")
+        }
+      })
+
+      window.ethereum.on("chainChanged", (chainId) => {
+        onConnectWallet()
+      })
+    } else {
+      setStatus(
+        <p>
+          🦊 You must install Metamask, a virtual Ethereum wallet, in your
+          browser.(https://metamask.io/download.html)
+        </p>
+      )
+    }
+  }
 
   useEffect(async () => {
-    await onConnect()
+    const { address, status } = await getCurrentWalletConnected()
+
+    setWalletAddress(address)
+    setStatus(status)
+
+    onChangeWalletListener()
+
+    window.addEventListener("resize", getWindowWidth)
+    return () => window.removeEventListener("resize", getWindowWidth)
   }, [])
 
-  const onConnect = async () => {
-    activate(injectedConnector)
-      .then(() => {
-        account && setWalletAddress(account)
-      })
-      .catch((event) => {
-        console.log(event)
-      })
+  useEffect(async () => {
+    if (!!walletAddress) {
+      const meta = await getMetaList(walletAddress)
+
+      setMetaData(meta)
+    }
+  }, [walletAddress])
+
+  useEffect(async () => {
+    if (newMint.length) {
+      const newMeta = await getMetaList(walletAddress, newMint)
+      setMetaData(metaData.concat(newMeta))
+    }
+  }, [newMint])
+
+  const onMintHandler = async () => {
+    setMintLoading(true)
+
+    const { success, status } = await mintNFT(walletAddress)
+
+    setStatus(status)
+
+    setMintLoading(false)
   }
 
   return (
     <DashboardComponent
       soldOutCounts={soldOutCounts}
       walletAddress={walletAddress}
-      onConnect={onConnect}
+      onConnect={onConnectWallet}
+      onMint={onMintHandler}
+      onClickExpand={onClickExpand}
+      expanded={collapseExpanded}
     />
   )
 }

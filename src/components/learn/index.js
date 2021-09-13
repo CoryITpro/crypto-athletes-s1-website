@@ -1,6 +1,6 @@
 import "./style.scss"
 
-import IMAGE from "resources/nfts/image0.jpg"
+import IMAGE from "resources/artworks/Learn_Banner_Transparent.png"
 
 const Learn = () => (
   <div id="learn" className="learn">
@@ -19,7 +19,9 @@ const Learn = () => (
           others, but there will never be a bad baller!
         </div>
       </div>
-      <img src={IMAGE} alt="demo" />
+      <div className="learn-wrapper-img">
+        <img src={IMAGE} alt="demo" />
+      </div>
     </div>
   </div>
 )

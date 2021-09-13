@@ -4,10 +4,22 @@
   width: 100%;
   padding: 64px calc((100vw - 1280px) / 2);
   justify-content: space-around;
-  background-color: $Purple;
+  background-image: url("../../resources/CA_Background.jpg");
+
+  &-logo {
+    & > a {
+      height: 100%;
+
+      & > img {
+        margin-top: -16px;
+        width: 100px;
+      }
+    }
+  }
 
   &-contacts {
     gap: 36px;
+    align-items: center;
 
     & > a {
       color: $White;
@@ -21,6 +33,8 @@
   }
 
   &-email {
+    align-items: center;
+
     & > a {
       color: $White;
       text-decoration: none;
@@ -53,6 +67,16 @@
 @media (max-width: 768px) {
   .footer {
     padding: 24px calc((100vw - 1280px) / 2);
+    flex-wrap: wrap;
+
+    &-logo {
+      & > a {
+        & > img {
+          margin-top: -12px;
+          width: 72px;
+        }
+      }
+    }
 
     &-contacts {
       gap: 12px;
