@@ -63,7 +63,7 @@ const Dashboard = ({
         to={"roadmap"}
         spy={true}
         smooth={true}
-        offset={-50}
+        offset={0}
         duration={500}
         onClick={onClickExpand}
       >
