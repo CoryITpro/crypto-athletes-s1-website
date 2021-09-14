@@ -9,5 +9,5 @@ export const Envs = {
   IPFS_URL_FILE: "https://api.pinata.cloud/pinning/pinFileToJSON",
   IPFS_URL_UNPIN: "https://api.pinata.cloud/pinning/unpin/",
   CONTRACT_ADDRESS: "0xc967b8fA713dDE1dF398f12E1F4579394ed36CBB",
-  CHAIN_ID: 0x2a,
+  CHAIN_ID: "0x2a",
 }

@@ -7,6 +7,7 @@ import Navbar from "components/navbar"
 import Hero from "components/hero"
 import Learn from "components/learn"
 import Rarity from "components/rarity"
+import FuturePlans from "components/future"
 import Roadmap from "components/roadmap"
 import FAQ from "components/faq"
 import Footer from "components/footer"
@@ -92,6 +93,7 @@ const Dashboard = ({
     </div>
     <Learn />
     <Rarity />
+    <FuturePlans />
     <Roadmap />
     <FAQ />
     <Footer />
