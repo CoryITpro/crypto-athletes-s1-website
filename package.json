@@ -1,6 +1,7 @@
 {
   "name": "crypto-athletes-s1-website",
   "version": "0.1.0",
+  "homepage": "https://realcryptoathletes.com",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",

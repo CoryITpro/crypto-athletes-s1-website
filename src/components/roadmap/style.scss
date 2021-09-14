@@ -17,6 +17,8 @@
 
     & > img {
       width: 360px;
+      height: fill-available;
+      height: intrinsic;
     }
   }
 
