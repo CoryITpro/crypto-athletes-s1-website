@@ -15,8 +15,10 @@ const Ticker = ({ soldOutCounts, walletAddress, onConnect }) => (
           Whee! All NFTs are soldout! To get Crypto Athletes, check the
           collection on Opensea
         </p>
-      ) : (
+      ) : walletAddress === "" ? (
         <p>Connect your wallet to buy Crypto Athletes</p>
+      ) : (
+        <p>Get grab your legend ballers!</p>
       )}
     </div>
     <Button
