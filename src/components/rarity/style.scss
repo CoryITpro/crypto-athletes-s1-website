@@ -83,13 +83,13 @@
 
         &-bar {
           &-bronze {
-            height: 10%;
+            height: 30%;
             background-color: $Bronze;
             animation: expanding-bronze 2s ease-in-out 0.5s;
           }
 
           &-silver {
-            height: 30%;
+            height: 40%;
             background-color: $Silver;
             animation: expanding-silver 2s ease-in-out 0.5s;
           }
@@ -185,7 +185,7 @@
   }
 
   to {
-    height: 10%;
+    height: 30%;
   }
 }
 
@@ -195,7 +195,7 @@
   }
 
   to {
-    height: 30%;
+    height: 40%;
   }
 }
 

@@ -59,14 +59,11 @@ const Rarity = () => (
       <div className="rarity-ranking-policy">
         <span>The ranking goes as following:</span>
         <ul>
-          <li>Bronze - score of 1 up to 3.9</li>
-          <li>Silver - score of 4 up to 6.9</li>
-          <li>Gold - score of 7 up to 9.5</li>
-          <li>HOF - score of 9.6 to 10</li>
-          <li>
-            Mastercard - the holder of ⅗ hall of fame players will earn
-            themselves of mastercard.
-          </li>
+          <li>Bronze - 60 to 70 Overall</li>
+          <li>Silver - 71 to 80 Overall</li>
+          <li>Gold - 81 to 90 Overall</li>
+          <li>HOF - 91 to 97 Overall</li>
+          <li>Mastercard - 98 to 99 Overall</li>
         </ul>
         <span className="flex">
           <span>*</span>

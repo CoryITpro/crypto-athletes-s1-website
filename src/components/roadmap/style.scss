@@ -43,6 +43,11 @@
 
     &-comment {
       font-size: 18px;
+
+      & > a {
+        color: $Gold;
+        font-size: 18px;
+      }
     }
   }
 }
@@ -93,6 +98,10 @@
 
       &-comment {
         font-size: 14px;
+
+        & > a {
+          font-size: 14px;
+        }
       }
     }
   }
