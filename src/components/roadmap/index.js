@@ -8,7 +8,7 @@ const generateRoadmap = () =>
     <div key={index} className="roadmap-item flex flex-column">
       <div className="roadmap-item-percentage">{`${data.percentage}%`}</div>
       <div className="roadmap-item-comment">
-        {data.comment} {data.url && <a href={data.url}>join the discord.</a>}
+        {data.comment} {data.url && <a href={data.url}>join the Discord.</a>}
       </div>
     </div>
   ))

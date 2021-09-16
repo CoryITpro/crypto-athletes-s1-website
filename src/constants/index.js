@@ -69,11 +69,12 @@ export const FAQs = [
   {
     question: "Is the art generated or hand-made?",
     answer:
-      "All of the individual 9 traits for CryptoAthletes were hand drawn by our talented artist @Bakeneko.bakeneko.Then, those hand drawn traits are put into a random generation, creating millions of possible combinations.But only 10,000 will be seen hooping around the metaverse!",
+      "All of the individual 9 traits for CryptoAthletes were hand drawn by our talented artist @Bakeneko.bakeneko. Then, those hand drawn traits are put into a random generation, creating millions of possible combinations. But only 10,000 will be seen hooping around the metaverse!",
   },
   {
     question: "How can I Mint a CryptoAthlete?",
     answer:
-      "We will have a presale of 500 pieces exclusive to members of our discord server (insert link). After our official launch you can mint them on our website. Once they are sold out you can purchase them on the secondary market on opensea.io <- make that link to our project opensea.",
+      "We will have a presale of 500 pieces exclusive to members of our discord server (insert link). After our official launch you can mint them on our website. Once they are sold out you can purchase them on the secondary market on",
+    url: "https://opensea.io",
   },
 ]

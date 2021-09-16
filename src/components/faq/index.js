@@ -7,7 +7,9 @@ const generateFAQs = () =>
   FAQs.map((data, index) => (
     <div key={index} className="faqs-item">
       <div className="faqs-item-title">{data.question}</div>
-      <div className="faqs-item-content">{data.answer}</div>
+      <div className="faqs-item-content">
+        {data.answer} {data.url && <a href={data.url}>Opensea</a>}
+      </div>
     </div>
   ))
 
