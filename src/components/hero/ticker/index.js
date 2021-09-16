@@ -18,7 +18,7 @@ const Ticker = ({ soldOutCounts, walletAddress, onConnect }) => (
       ) : walletAddress === "" ? (
         <p>Connect your wallet to buy Crypto Athletes</p>
       ) : (
-        <p>Get grab your legend ballers!</p>
+        <p>Mint Your Own Crypto Athlete</p>
       )}
     </div>
     <Button
