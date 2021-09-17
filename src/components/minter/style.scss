@@ -2,7 +2,7 @@
 
 .minter {
   width: 100%;
-  padding: 32px calc((100vw - 1280px) / 2);
+  padding: 0 calc((100vw - 1280px) / 2);
   background-color: $Warning;
 
   &-wrapper {
@@ -12,7 +12,7 @@
     font-size: 40px;
     justify-content: center;
     text-align: center;
-    padding: 24px 0;
+    padding: 32px 0 0 0;
 
     & > div {
       border-radius: 100px;
@@ -20,7 +20,7 @@
   }
 
   &-gallery {
-    padding: 0 64px;
+    padding: 0 64px 32px 64px;
 
     & > span {
       font-size: 40px;
@@ -44,7 +44,7 @@
     }
 
     &-gallery {
-      padding: 0 32px;
+      padding: 0 32px 32px 32px;
     }
 
     &-show {
@@ -62,7 +62,7 @@
     }
 
     &-gallery {
-      padding: 0 8px;
+      padding: 0 8px 32px 8px;
     }
   }
 }
