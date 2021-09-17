@@ -5,6 +5,7 @@ import "./style.scss"
 
 import Navbar from "components/navbar"
 import Hero from "components/hero"
+import Minter from "components/minter"
 import Learn from "components/learn"
 import Rarity from "components/rarity"
 import FuturePlans from "components/future"
@@ -91,6 +92,7 @@ const Dashboard = ({
         onConnect={onConnect}
       />
     </div>
+    <Minter soldOutCounts={soldOutCounts} walletAddress={walletAddress} />
     <Learn />
     <Rarity />
     <FuturePlans />

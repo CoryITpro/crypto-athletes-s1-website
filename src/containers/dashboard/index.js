@@ -20,6 +20,7 @@ const Dashboard = () => {
   const [collapseExpanded, setCollapseExpanded] = useState(false)
   const [error, setError] = useState("")
 
+  // When the width of the website exceeds 1024px, hide sidebar
   const getWindowWidth = () => {
     const { innerWidth: width } = window
     if (width > 1024) {

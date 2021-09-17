@@ -1,0 +1,68 @@
+@import "../../styles/variables.scss";
+
+.minter {
+  width: 100%;
+  padding: 32px calc((100vw - 1280px) / 2);
+  background-color: $Warning;
+
+  &-wrapper {
+    width: 100%;
+    color: $Purple;
+    font-weight: bold;
+    font-size: 40px;
+    justify-content: center;
+    text-align: center;
+    padding: 24px 0;
+
+    & > div {
+      border-radius: 100px;
+    }
+  }
+
+  &-gallery {
+    padding: 0 64px;
+
+    & > span {
+      font-size: 40px;
+      font-weight: bold;
+      color: $Black-dark;
+    }
+
+    &-show {
+      width: 100%;
+      padding: 24px 0;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .minter {
+    &-wrapper {
+      & > div {
+        font-size: 20px;
+      }
+    }
+
+    &-gallery {
+      padding: 0 32px;
+    }
+
+    &-show {
+      padding: 16px 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .minter {
+    &-wrapper {
+      & > div {
+        font-size: 16px;
+      }
+    }
+
+    &-gallery {
+      padding: 0 8px;
+    }
+  }
+}

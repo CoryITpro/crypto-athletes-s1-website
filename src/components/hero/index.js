@@ -17,15 +17,6 @@ const Hero = ({ soldOutCounts, walletAddress, onConnect }) => {
           />
         </div>
       </div>
-      {walletAddress !== "" && (
-        <div className="hero-congrats flex">
-          {soldOutCounts === 10000 ? (
-            "SOLD OUT | WOW !!!"
-          ) : (
-            <Button children="Mint 0.05ETH Crypto Athletes" />
-          )}
-        </div>
-      )}
     </>
   )
 }

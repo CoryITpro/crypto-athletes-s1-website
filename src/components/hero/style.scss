@@ -52,21 +52,6 @@
       }
     }
   }
-
-  &-congrats {
-    width: 100%;
-    color: $Purple;
-    font-weight: bold;
-    font-size: 40px;
-    justify-content: center;
-    text-align: center;
-    padding: 24px 0;
-    background-color: $Warning;
-
-    & > div {
-      border-radius: 100px;
-    }
-  }
 }
 
 @media (max-width: 1024px) {
@@ -92,11 +77,6 @@
         }
       }
     }
-
-    &-congrats {
-      font-size: 32px;
-      padding: 20px 0;
-    }
   }
 }
 
@@ -114,11 +94,6 @@
         flex-direction: column !important;
         gap: 32px;
       }
-    }
-
-    &-congrats {
-      font-size: 24px;
-      padding: 16px 0;
     }
   }
 }

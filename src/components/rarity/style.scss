@@ -249,7 +249,7 @@
       padding-left: 0;
       margin-bottom: 32px;
       font-size: 18px;
-      padding: 0 64px;
+      padding: 0 32px;
       gap: 24px;
 
       & > span {
@@ -277,6 +277,10 @@
 @media (max-width: 768px) {
   .rarity {
     &-ranking {
+      font-size: 18px;
+      padding: 0 8px;
+      gap: 24px;
+
       & > img {
         width: 45%;
         left: 32px;
@@ -307,10 +311,6 @@
     }
 
     &-ranking {
-      font-size: 18px;
-      padding: 0 8px;
-      gap: 24px;
-
       & > span {
         font-size: 40px;
       }
