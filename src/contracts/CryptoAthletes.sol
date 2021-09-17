@@ -1,7 +1,5 @@
 // SPDX-License-Identifier: MIT
 
-// 
-
 pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -31,10 +29,10 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
     event CreateCryptoAthletes(uint256 indexed id);
 
     modifier saleIsOpen {
-        require(_totalSupply() <= maxSalesAmount, "Sale end");
+        require(_totalSupply() <= maxSalesAmount, "SALES: Sale end");
 
         if (_msgSender() != owner()) {
-            require(!paused(), "Pausable: Paused");
+            require(!paused(), "PAUSABLE: Paused");
         }
         _;
     }
@@ -130,7 +128,7 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
 
     function _widthdraw(address _address, uint256 _amount) private {
         (bool success, ) = _address.call{value: _amount}("");
-        require(success, "Transfer failed.");
+        require(success, "WITHDRAW: Transfer failed.");
     }
 
     function _beforeTokenTransfer(
