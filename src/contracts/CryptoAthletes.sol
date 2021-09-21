@@ -16,7 +16,7 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
 
     Counters.Counter private _tokenIdTracker;
 
-    uint256 public constant MAX_ELEMENTS = 1 * 10**4;
+    uint256 public constant MAX_ELEMENTS = 1 * 10**4 + 20;
     uint256 public constant PRICE = 5 * 10**16;
     uint256 public constant MAX_BY_MINT = 20;
     address public constant ownerAddress = 0x0081aD52FF7Eb8B5165777aa6adCf7d80cBF647D;
