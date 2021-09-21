@@ -3,7 +3,7 @@ import { ethers } from "ethers"
 import axios from "axios"
 
 import itemMetadata from "constants/item-meta.json"
-import contractABI from "constants/contract-abi.json"
+import contractABI from "abis/CryptoAthletes.json"
 
 import { Envs } from "configurations"
 

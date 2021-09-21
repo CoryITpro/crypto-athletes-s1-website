@@ -22,8 +22,9 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
     address public constant ownerAddress = 0x0081aD52FF7Eb8B5165777aa6adCf7d80cBF647D;
     address public constant developerAddress = 0xA7482C9c5926E88d85804A969c383730Ce100639;
 
-    uint256 public maxSalesAmount;
+    uint256[] private ids;
 
+    uint256 public maxSalesAmount;
     string public baseTokenURI;
 
     event CreateCryptoAthletes(uint256 indexed id);
@@ -52,16 +53,16 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
         return _totalSupply();
     }
 
-    function mint(address _to, uint256 _count) public payable saleIsOpen {
+    function mint(address payable _to, uint256[] memory _ids) public payable saleIsOpen {
         uint256 total = _totalSupply();
 
-        require(total + _count <= maxSalesAmount, "MINT: Current count exceeds maximum element count.");
+        require(total + _ids.length <= maxSalesAmount, "MINT: Current count exceeds maximum element count.");
         require(total <= maxSalesAmount, "MINT: Please go to the Opensea to buy Crypto Athletes.");
-        require(_count <= MAX_BY_MINT, "MINT: Current count exceeds maximum mint count.");
-        require(msg.value >= price(_count), "MINT: Current value is below the sales price of Crypto Athletes");
+        require(_ids.length <= MAX_BY_MINT, "MINT: Current count exceeds maximum mint count.");
+        require(msg.value >= price(_ids.length), "MINT: Current value is below the sales price of Crypto Athletes");
 
-        for (uint256 i = 0; i < _count; i++) {
-            _mintAnElement(_to);
+        for (uint256 i = 0; i < _ids.length; i++) {
+            _mintAnElement(_to, _ids[i]);
         }
     }
 
@@ -75,13 +76,11 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
         maxSalesAmount = MAX_ELEMENTS;
     }
 
-    function _mintAnElement(address _to) private {
-        uint id = _totalSupply();
-
+    function _mintAnElement(address payable _to, uint256 _id) private {
         _tokenIdTracker.increment();
-        _safeMint(_to, id);
+        _safeMint(_to, _id);
 
-        emit CreateCryptoAthletes(id);
+        emit CreateCryptoAthletes(_id);
     }
 
     function price(uint256 _count) public pure returns (uint256) {
