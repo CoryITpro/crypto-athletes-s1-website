@@ -18,7 +18,10 @@ import Alert from "components/alert"
 const Dashboard = ({
   soldOutCounts,
   walletAddress,
+  metadatas,
+  mintLoading,
   onConnect,
+  onMint,
   onClickExpand,
   expanded,
   error,
@@ -92,7 +95,13 @@ const Dashboard = ({
         onConnect={onConnect}
       />
     </div>
-    <Minter soldOutCounts={soldOutCounts} walletAddress={walletAddress} />
+    <Minter
+      onMint={onMint}
+      mintLoading={mintLoading}
+      soldOutCounts={soldOutCounts}
+      walletAddress={walletAddress}
+      metadatas={metadatas}
+    />
     <Learn />
     <Rarity />
     <FuturePlans />

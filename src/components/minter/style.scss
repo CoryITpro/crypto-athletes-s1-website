@@ -30,7 +30,39 @@
 
     &-show {
       width: 100%;
-      padding: 24px 0;
+      padding: 24px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      height: 100%;
+      gap: 24px;
+
+      &-item {
+        width: 240px;
+        min-width: 220px;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: $Platinum;
+        box-shadow: 0 2px 8px rgba($color: $Black-dark, $alpha: 0.5);
+        padding: 4px;
+        height: 100%;
+
+        & > img {
+          width: 100%;
+          border-radius: 6px;
+        }
+
+        &-info {
+          font-size: 16px;
+          font-weight: bold;
+          justify-content: center;
+
+          & > .name {
+            margin: 8px 0;
+            color: $Purple;
+            text-shadow: 0 1px 4px rgba($color: $Purple, $alpha: 0.5);
+          }
+        }
+      }
     }
   }
 }

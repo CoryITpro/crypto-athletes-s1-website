@@ -1,11 +1,17 @@
-import { pinJSONToIPFS, pinFileToIPFS, removePinFromIPFS } from "./pinata"
 import { ethers } from "ethers"
-import axios from "axios"
-
-import itemMetadata from "constants/item-meta.json"
 import contractABI from "abis/CryptoAthletes.json"
+import { ENVS } from "configurations/index"
 
-import { Envs } from "configurations"
+const getContract = () => {
+  const infuraProvider = new ethers.providers.InfuraProvider("rinkeby")
+  const contract = new ethers.Contract(
+    ENVS.CONTRACT_ADDRESS,
+    contractABI.abi,
+    infuraProvider
+  )
+
+  return contract
+}
 
 export const connectWallet = async () => {
   if (window.ethereum) {
@@ -14,7 +20,7 @@ export const connectWallet = async () => {
         method: "eth_chainId",
       })
 
-      if (parseInt(walletChainId) === parseInt(Envs.CHAIN_ID)) {
+      if (parseInt(walletChainId) === parseInt(ENVS.CHAIN_ID)) {
         const addressArray = await window.ethereum.request({
           method: "eth_requestAccounts",
         })
@@ -33,7 +39,7 @@ export const connectWallet = async () => {
       } else {
         window.ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{ chainId: Envs.CHAIN_ID }],
+          params: [{ chainId: ENVS.CHAIN_ID }],
         })
 
         return {
@@ -48,16 +54,11 @@ export const connectWallet = async () => {
       }
     }
   } else {
+    console.log(`🦊 You must install Metamask, a virtual Ethereum wallet, in your
+            browser.(https://metamask.io/download.html)`)
     return {
       address: "",
-      status: (
-        <span>
-          <p>
-            🦊 You must install Metamask, a virtual Ethereum wallet, in your
-            browser.(https://metamask.io/download.html)
-          </p>
-        </span>
-      ),
+      status: "Can't find web3 provider",
     }
   }
 }
@@ -71,7 +72,7 @@ export const getCurrentWalletConnected = async () => {
       const walletChainId = await window.ethereum.request({
         method: "eth_chainId",
       })
-      if (addressArray.length && walletChainId === Envs.CHAIN_ID) {
+      if (addressArray.length && walletChainId === ENVS.CHAIN_ID) {
         return {
           address: addressArray[0],
           status: "Get your CryptoAthletes pack, 0.05ETH",
@@ -89,146 +90,66 @@ export const getCurrentWalletConnected = async () => {
       }
     }
   } else {
+    console.log(`🦊 You must install Metamask, a virtual Ethereum wallet, in your
+            browser.(https://metamask.io/download.html)`)
     return {
       address: "",
-      status: (
-        <span>
-          <p>
-            🦊 You must install Metamask, a virtual Ethereum wallet, in your
-            browser.(https://metamask.io/download.html)
-          </p>
-        </span>
-      ),
+      status: "Can't find web3 provider",
     }
   }
 }
 
-export const mintNFT = async (walletAddress) => {
-  const infuraProvider = new ethers.providers.InfuraProvider("kovan")
-  const contract = new ethers.Contract(
-    Envs.CONTRACT_ADDRESS,
-    contractABI,
-    infuraProvider
-  )
+export const mintNFT = async (
+  walletAddress,
+  setMintLoading,
+  randomIds,
+  counts
+) => {
+  setMintLoading(true)
 
-  const clanNumber = Math.floor(Math.random() * itemMetadata.count.set)
-  const metaData = itemMetadata.set[clanNumber]
-  metaData.name = metaData.name + Date.now() // name + timestamp
-  const pinataResponseClan = await pinJSONToIPFS(metaData)
+  const contract = getContract()
+  try {
+    let txhash = await contract.mint(walletAddress, randomIds, {
+      value: ethers.BigNumber.from(1e9).mul(
+        ethers.BigNumber.from(1e9).mul(5).div(100).mul(counts)
+      ),
+      from: walletAddress,
+    })
+    let res = await txhash.wait()
+    setMintLoading(false)
 
-  if (!pinataResponseClan.success) {
+    if (res.transactionHash) {
+      return {
+        success: true,
+        status: `Successfully minted ${counts} Crypty Athletes.`,
+      }
+    } else {
+      return {
+        success: false,
+        status: "Transaction failed",
+      }
+    }
+  } catch (err) {
+    setMintLoading(false)
     return {
       success: false,
-      status: "😢 Something went wrong while uploading your tokenURI.",
+      status: "Transaction failed",
     }
   }
+}
 
-  const tokenURI = pinataResponseClan.pinataUrl
-  const ABI = ["function mintPack(string memory tokenURI)"]
-  const interFace = new ethers.utils.Interface(ABI)
-  const dataParam = interFace.encodeFunctionData("mintPack", [tokenURI])
-
-  const transactionParameters = {
-    to: Envs.CONTRACT_ADDRESS,
-    from: walletAddress,
-    data: dataParam,
-  }
+export const getTokenIdsOfWallet = async (walletAddress) => {
+  const contract = getContract()
+  let tokenIds = []
 
   try {
-    const txHash = window.ethereum
-      .request({
-        method: "eth_sendTransaction",
-        params: [transactionParameters],
-      })
-      .then(async (data) => {
-        console.log("Pack pending:", data)
-        contract.on("MintPack(address, uint256)", async (to, newId) => {
-          if (to === ethers.utils.getAddress(walletAddress)) {
-            const tokenId = ethers.BigNumber.from(newId).toNumber()
+    let ids = await contract.getTokenIdsOfWallet(walletAddress)
+    for (let i = 0; i < ids.length; i++) {
+      tokenIds.push(ethers.BigNumber.from(ids[i]).toNumber())
+    }
 
-            return {
-              success: true,
-              tokenId,
-            }
-          }
-        })
-      })
-      .catch(async (err) => {
-        await removePinFromIPFS(tokenURI)
-      })
+    return tokenIds
   } catch (err) {
-    return {
-      success: false,
-      status: `😥 Something went wrong: ${err.message}`,
-    }
+    console.log("Get NFT Ids Fail:", err)
   }
-}
-
-export const getMetaList = async (walletAddress, tokenIds = []) => {
-  if (!walletAddress) {
-    return []
-  }
-
-  const infuraProvider = new ethers.providers.InfuraProvider("kovan")
-  const contract = new ethers.Contract(
-    Envs.CONTRACT_ADDRESS,
-    contractABI,
-    infuraProvider
-  )
-
-  if (!tokenIds.length) {
-    try {
-      tokenIds = await contract.tokenIdsOfAccount(walletAddress)
-    } catch (err) {
-      console.log("Network error:", err)
-    }
-  }
-
-  let metaList = []
-  const metas = await Promise.all(
-    tokenIds.map(async (tokenId, index) => {
-      let res = null
-
-      try {
-        res = await contract.tokenURI(Number(tokenId))
-      } catch (err) {
-        console.log("Network error:", err)
-      }
-
-      if (res) {
-        let response = null
-
-        try {
-          response = await axios.get(`https://${res}`)
-        } catch (err) {
-          console.log("Fetch error:", err)
-        }
-
-        if (response) {
-          try {
-            let resJson = response.data
-            resJson["id"] = ethers.BigNumber.from(tokenId).toNumber()
-            metaList.push(resJson)
-          } catch (err) {
-            console.log("Error:", err)
-          }
-        }
-      }
-    })
-  ).then(() => {
-    return metaList
-  })
-
-  return metas
-}
-
-export const uploadImage = async () => {
-  const reader = new FileReader()
-
-  reader.onloadend = () => {
-    console.log(reader.result)
-  }
-
-  const res = await pinFileToIPFS("nft.png")
-  console.log(res)
 }

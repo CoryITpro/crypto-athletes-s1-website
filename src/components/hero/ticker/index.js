@@ -1,4 +1,5 @@
 import Button from "components/button"
+import { MAX_ELEMENT } from "configurations"
 
 const abbreviateAddress = (address) => {
   const walletAddress = address
@@ -9,8 +10,8 @@ const Ticker = ({ soldOutCounts, walletAddress, onConnect }) => (
   <div className="hero-wallet-purchase flex">
     <div className="hero-wallet-purchase-ticker flex">
       <span>Total Minted</span>
-      <span className="hero-wallet-purchase-ticker-counts">{`${soldOutCounts} / 10000`}</span>
-      {soldOutCounts === 10000 ? (
+      <span className="hero-wallet-purchase-ticker-counts">{`${soldOutCounts} / ${MAX_ELEMENT}`}</span>
+      {soldOutCounts === MAX_ELEMENT ? (
         <p>
           Whee! All NFTs are soldout! To get Crypto Athletes, check the
           collection on Opensea
@@ -23,19 +24,21 @@ const Ticker = ({ soldOutCounts, walletAddress, onConnect }) => (
     </div>
     <Button
       to={
-        soldOutCounts === 10000
+        soldOutCounts === MAX_ELEMENT
           ? "https://opensea.io/collection/Crypto_Athletes"
           : ""
       }
       children={
-        soldOutCounts === 10000
+        soldOutCounts === MAX_ELEMENT
           ? "Go To Opensea"
           : walletAddress !== ""
           ? abbreviateAddress(walletAddress)
           : "Connect Metamask"
       }
       onClick={
-        soldOutCounts !== 10000 && walletAddress === "" ? onConnect : () => {}
+        soldOutCounts !== MAX_ELEMENT && walletAddress === ""
+          ? onConnect
+          : () => {}
       }
     />
   </div>

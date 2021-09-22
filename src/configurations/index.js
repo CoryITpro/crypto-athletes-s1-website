@@ -2,12 +2,9 @@ export const ROUTERS = {
   DASHBOARD: "/",
 }
 
-export const Envs = {
-  APP_PINATA_KEY: "",
-  APP_PINATA_SECRET: "",
-  IPFS_URL_JSON: "https://api.pinata.cloud/pinning/pinJSONToIPFS",
-  IPFS_URL_FILE: "https://api.pinata.cloud/pinning/pinFileToJSON",
-  IPFS_URL_UNPIN: "https://api.pinata.cloud/pinning/unpin/",
-  CONTRACT_ADDRESS: "0xc967b8fA713dDE1dF398f12E1F4579394ed36CBB",
-  CHAIN_ID: "0x2a",
+export const ENVS = {
+  CONTRACT_ADDRESS: "0x6F0F0406F92378C692c5F195fB7E4A63ADd04e57",
+  CHAIN_ID: "0x4",
 }
+
+export const MAX_ELEMENT = 10020
