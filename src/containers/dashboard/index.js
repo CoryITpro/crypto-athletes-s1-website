@@ -155,6 +155,7 @@ const Dashboard = () => {
         ? 1
         : e.target.value
 
+    console.log(value)
     setMintCount(value)
   }
 
@@ -180,6 +181,7 @@ const Dashboard = () => {
   return (
     <DashboardComponent
       error={error}
+      maxMint={maxMint}
       mintCount={mintCount}
       metadatas={metadatas}
       maxSupply={maxSupply}

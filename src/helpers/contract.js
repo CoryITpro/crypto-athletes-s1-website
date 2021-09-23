@@ -53,7 +53,7 @@ export const getCurrentTotalSupply = async () => {
   try {
     let totalSupply = await contract.totalSupply()
 
-    return totalSupply
+    return ethers.BigNumber.from(totalSupply).toNumber()
   } catch (err) {
     return 0
   }
@@ -66,7 +66,7 @@ export const getCurrentMaxSupply = async () => {
   try {
     let currentMaxSupply = await contract.maxSales()
 
-    return currentMaxSupply
+    return ethers.BigNumber.from(currentMaxSupply).toNumber()
   } catch (err) {
     return 0
   }
@@ -79,7 +79,7 @@ export const getCurrentMaxMint = async () => {
   try {
     let currentMaxMint = await contract.maxMint()
 
-    return currentMaxMint
+    return ethers.BigNumber.from(currentMaxMint).toNumber()
   } catch (err) {
     return 0
   }

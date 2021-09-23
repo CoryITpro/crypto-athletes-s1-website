@@ -17,6 +17,7 @@ import Alert from "components/alert"
 
 const Dashboard = ({
   error,
+  maxMint,
   metadatas,
   maxSupply,
   mintCount,
@@ -100,6 +101,7 @@ const Dashboard = ({
       />
     </div>
     <Minter
+      maxMint={maxMint}
       mintCount={mintCount}
       metadatas={metadatas}
       maxSupply={maxSupply}

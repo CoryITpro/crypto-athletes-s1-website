@@ -16,13 +16,14 @@ const generateNFTDatas = (metadatas) => {
 }
 
 const Minter = ({
-  onMint,
+  maxMint,
   mintCount,
   metadatas,
   maxSupply,
   mintLoading,
   soldOutCounts,
   walletAddress,
+  onMintHandler,
   onMintCountChangeHandler,
 }) => (
   <div className="minter">
@@ -36,24 +37,26 @@ const Minter = ({
               <input
                 type="number"
                 min={1}
-                max={mintCount}
+                max={maxMint}
                 defaultValue={mintCount}
                 onChange={onMintCountChangeHandler}
               />
               <Button
                 children="Mint 0.05ETH Crypto Athletes"
-                onClick={onMint}
+                onClick={onMintHandler}
                 mintLoading={mintLoading}
               />
             </>
           )}
         </div>
-        <div className="minter-gallery flex flex-column">
-          <span>Your Gallery</span>
-          <div className="minter-gallery-show flex">
-            {generateNFTDatas(metadatas)}
+        {metadatas.length && (
+          <div className="minter-gallery flex flex-column">
+            <span>Your Gallery</span>
+            <div className="minter-gallery-show flex">
+              {generateNFTDatas(metadatas)}
+            </div>
           </div>
-        </div>
+        )}
       </>
     )}
   </div>
