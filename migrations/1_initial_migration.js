@@ -2,8 +2,18 @@ require("dotenv").config()
 const CryptoAthletes = artifacts.require("CryptoAthletes")
 const baseURI = process.env.BASE_URI
 
-console.log(baseURI)
+const generateList = () => {
+  let tempList = []
+  const maxElementCount = process.env.MAX_ELEMENT
+
+  for (let i = 0; i < maxElementCount; i++) {
+    tempList.push(i + 1)
+  }
+
+  return tempList
+}
 
 module.exports = function (deployer) {
-  deployer.deploy(CryptoAthletes, baseURI)
+  const defaultCounts = generateList()
+  deployer.deploy(CryptoAthletes, baseURI, defaultCounts)
 }

@@ -3,11 +3,13 @@ import contractABI from "abis/CryptoAthletes.json"
 import { ENVS } from "configurations/index"
 
 const getContract = () => {
-  const infuraProvider = new ethers.providers.InfuraProvider("rinkeby")
+  const infuraProvider = new ethers.providers.Web3Provider(window.ethereum)
+  const signer = infuraProvider.getSigner()
+
   const contract = new ethers.Contract(
     ENVS.CONTRACT_ADDRESS,
     contractABI.abi,
-    infuraProvider
+    signer
   )
 
   return contract
@@ -99,29 +101,26 @@ export const getCurrentWalletConnected = async () => {
   }
 }
 
-export const mintNFT = async (
-  walletAddress,
-  setMintLoading,
-  randomIds,
-  counts
-) => {
+export const mintNFT = async (walletAddress, setMintLoading, randomIds) => {
   setMintLoading(true)
 
+  console.log(walletAddress, randomIds)
   const contract = getContract()
   try {
     let txhash = await contract.mint(walletAddress, randomIds, {
       value: ethers.BigNumber.from(1e9).mul(
-        ethers.BigNumber.from(1e9).mul(5).div(100).mul(counts)
+        ethers.BigNumber.from(1e9).mul(5).div(100).mul(randomIds.length)
       ),
       from: walletAddress,
     })
+    console.log(txhash)
     let res = await txhash.wait()
     setMintLoading(false)
 
     if (res.transactionHash) {
       return {
         success: true,
-        status: `Successfully minted ${counts} Crypty Athletes.`,
+        status: `Successfully minted ${randomIds.length} Crypty Athletes.`,
       }
     } else {
       return {
@@ -130,6 +129,7 @@ export const mintNFT = async (
       }
     }
   } catch (err) {
+    console.log(err.message)
     setMintLoading(false)
     return {
       success: false,
@@ -151,5 +151,23 @@ export const getTokenIdsOfWallet = async (walletAddress) => {
     return tokenIds
   } catch (err) {
     console.log("Get NFT Ids Fail:", err)
+  }
+}
+
+export const getCurrentTotalSupply = async () => {
+  const infuraProvider = new ethers.providers.InfuraProvider("rinkeby")
+
+  const contract = new ethers.Contract(
+    ENVS.CONTRACT_ADDRESS,
+    contractABI.abi,
+    infuraProvider
+  )
+
+  try {
+    let totalSupply = await contract.totalSupply()
+
+    return totalSupply
+  } catch (err) {
+    return 0
   }
 }

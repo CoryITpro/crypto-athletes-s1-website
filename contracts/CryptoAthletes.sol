@@ -24,6 +24,8 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
 
     uint256[] private ids;
 
+    mapping(uint256 => bool) private isOccupied;
+
     uint256 public maxSalesAmount;
     string public baseTokenURI;
 
@@ -62,6 +64,10 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
         require(msg.value >= price(_ids.length), "MINT: Current value is below the sales price of Crypto Athletes");
 
         for (uint256 i = 0; i < _ids.length; i++) {
+            require(isOccupied[_ids[i]] == false, "That ");
+        }
+
+        for (uint256 i = 0; i < _ids.length; i++) {
             _mintAnElement(_to, _ids[i]);
         }
     }
@@ -79,6 +85,7 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
     function _mintAnElement(address payable _to, uint256 _id) private {
         _tokenIdTracker.increment();
         _safeMint(_to, _id);
+        isOccupied[_id] = true;
 
         emit CreateCryptoAthletes(_id);
     }

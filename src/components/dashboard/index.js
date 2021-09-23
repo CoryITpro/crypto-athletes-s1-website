@@ -22,6 +22,8 @@ const Dashboard = ({
   mintLoading,
   onConnect,
   onMint,
+  onMintCountChangeHandler,
+  mintCount,
   onClickExpand,
   expanded,
   error,
@@ -97,6 +99,8 @@ const Dashboard = ({
     </div>
     <Minter
       onMint={onMint}
+      onMintCountChangeHandler={onMintCountChangeHandler}
+      mintCount={mintCount}
       mintLoading={mintLoading}
       soldOutCounts={soldOutCounts}
       walletAddress={walletAddress}

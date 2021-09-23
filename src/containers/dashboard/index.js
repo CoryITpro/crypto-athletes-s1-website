@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react"
 import DashboardComponent from "components/dashboard"
 import axios from "axios"
+import { MAX_ELEMENT } from "configurations"
 
 import {
   connectWallet,
   getCurrentWalletConnected,
   mintNFT,
   getTokenIdsOfWallet,
+  getCurrentTotalSupply,
 } from "helpers/interact"
 
 const Dashboard = () => {
@@ -14,12 +16,15 @@ const Dashboard = () => {
   const [soldOutCounts, setSoldOutCounts] = useState(0)
 
   const [status, setStatus] = useState("")
-  const [mintLoading, setMintLoading] = useState(false)
-  const [metadatas, setMetadatas] = useState([])
+  const [error, setError] = useState("")
+
   const [newMint, setNewMint] = useState([])
+  const [mintCount, setMintCount] = useState(1)
+  const [mintLoading, setMintLoading] = useState(false)
+
+  const [metadatas, setMetadatas] = useState([])
 
   const [collapseExpanded, setCollapseExpanded] = useState(false)
-  const [error, setError] = useState("")
 
   useEffect(async () => {
     const { address, status } = await getCurrentWalletConnected()
@@ -30,20 +35,26 @@ const Dashboard = () => {
     onChangeWalletListener()
     onConnectWallet()
 
+    let totalSupply = await getCurrentTotalSupply()
+    setSoldOutCounts(totalSupply)
+
     window.addEventListener("resize", getWindowWidth)
     return () => window.removeEventListener("resize", getWindowWidth)
   }, [])
 
+  // Fetch CA Ids of the Wallet
   useEffect(async () => {
     if (!!walletAddress) {
       let tokenIdsOfWallet = await getTokenIdsOfWallet(walletAddress)
-      let metadatasFromWallet = await fetchMetaDatas(tokenIdsOfWallet)
-      setMetadatas(metadatasFromWallet)
+
+      fetchMetaDatas(tokenIdsOfWallet)
     }
   }, [walletAddress])
 
   useEffect(async () => {
     if (newMint.length) {
+      let totalSupply = await getCurrentTotalSupply()
+      setSoldOutCounts(totalSupply)
     }
   }, [newMint])
 
@@ -109,11 +120,33 @@ const Dashboard = () => {
         })
     }
 
-    return metadatas
+    setMetadatas(metadatas)
   }
 
-  const onMintHandler = async (walletAddress, randomIds, counts) => {
-    await mintNFT(walletAddress, setMintLoading, randomIds, counts)
+  const onMintCountChangeHandler = (e) => {
+    let value =
+      e.target.value > 20 ? 20 : e.target.value < 1 ? 1 : e.target.value
+
+    setMintCount(value)
+  }
+
+  const getRandomIds = () => {
+    let customIds = []
+    const max = MAX_ELEMENT - soldOutCounts
+
+    for (let i = 0; i < mintCount; i++) {
+      customIds.push(Math.floor(Math.random() * max))
+    }
+
+    return customIds
+  }
+
+  const onMintHandler = async () => {
+    if (!!walletAddress) {
+      const randomIds = getRandomIds()
+
+      await mintNFT(walletAddress, setMintLoading, randomIds)
+    }
   }
 
   return (
@@ -124,6 +157,8 @@ const Dashboard = () => {
       mintLoading={mintLoading}
       onConnect={onConnectWallet}
       onMint={onMintHandler}
+      onMintCountChangeHandler={onMintCountChangeHandler}
+      mintCount={mintCount}
       onClickExpand={onClickExpand}
       expanded={collapseExpanded}
       error={error}

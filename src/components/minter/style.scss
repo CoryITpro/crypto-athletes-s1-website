@@ -13,6 +13,32 @@
     justify-content: center;
     text-align: center;
     padding: 32px 0 0 0;
+    gap: 24px;
+
+    @media (max-width: 425px) {
+      flex-direction: column !important;
+      align-items: center;
+    }
+
+    & > input {
+      border: 0px;
+      border-radius: 100px;
+      font-size: 24px;
+      padding: 16px 24px;
+      width: 150px;
+      font-weight: bold;
+      -moz-appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      @media (max-width: 768px) {
+        width: 100px;
+      }
+    }
 
     & > div {
       border-radius: 100px;
@@ -20,6 +46,7 @@
   }
 
   &-gallery {
+    height: 100%;
     padding: 0 64px 32px 64px;
 
     & > span {
@@ -38,16 +65,17 @@
 
       &-item {
         width: 240px;
+        min-height: 100%;
         min-width: 220px;
         border-radius: 8px;
         overflow: hidden;
         background-color: $Platinum;
         box-shadow: 0 2px 8px rgba($color: $Black-dark, $alpha: 0.5);
         padding: 4px;
-        height: 100%;
 
         & > img {
           width: 100%;
+          height: fill-available;
           border-radius: 6px;
         }
 
@@ -76,7 +104,7 @@
     }
 
     &-gallery {
-      padding: 0 32px 32px 32px;
+      padding: 16px 32px 32px 32px;
     }
 
     &-show {
@@ -94,7 +122,7 @@
     }
 
     &-gallery {
-      padding: 0 8px 32px 8px;
+      padding: 8px 8px 32px 8px;
     }
   }
 }
