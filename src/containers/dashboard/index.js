@@ -70,10 +70,14 @@ const Dashboard = () => {
 
   useEffect(() => {
     const getSoldOuts = async () => {
-      if (newMint.length) {
-        let totalSupply = await getCurrentTotalSupply()
+      let totalSupply = await getCurrentTotalSupply()
 
-        setSoldOutCounts(totalSupply)
+      setSoldOutCounts(totalSupply)
+
+      if (newMint[0] && newMint[0].toLowerCase() === walletAddress) {
+        let tokenIdsOfWallet = await getTokenIdsOfWallet(walletAddress)
+
+        fetchMetaDatas(tokenIdsOfWallet)
       }
     }
 
@@ -174,7 +178,7 @@ const Dashboard = () => {
     if (!!walletAddress) {
       const randomIds = getRandomIds()
 
-      await mintNFT(walletAddress, setMintLoading, randomIds)
+      await mintNFT(walletAddress, setMintLoading, setNewMint, randomIds)
     }
   }
 

@@ -1,11 +1,27 @@
 import { ethers } from "ethers"
 import { getContractWithSigner } from "./contract"
 
-export const mintNFT = async (walletAddress, setMintLoading, randomIds) => {
+export const mintNFT = async (
+  walletAddress,
+  setMintLoading,
+  setNewMint,
+  randomIds
+) => {
   setMintLoading(true)
 
   console.log(walletAddress, randomIds)
   const contract = getContractWithSigner()
+
+  contract.on("CreateCryptoAthletes(address, uint256)", (to, newId) => {
+    const address = ethers.utils.getAddress(to)
+    const newMintId = ethers.BigNumber.from(newId).toNumber()
+
+    console.log([
+      ethers.utils.getAddress(to),
+      ethers.BigNumber.from(newId).toNumber(),
+    ])
+    setNewMint([address, newMintId])
+  })
 
   try {
     let txhash = await contract.mint(walletAddress, randomIds, {

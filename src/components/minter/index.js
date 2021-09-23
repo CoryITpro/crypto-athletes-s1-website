@@ -49,7 +49,7 @@ const Minter = ({
             </>
           )}
         </div>
-        {metadatas.length && (
+        {metadatas.length !== 0 && (
           <div className="minter-gallery flex flex-column">
             <span>Your Gallery</span>
             <div className="minter-gallery-show flex">

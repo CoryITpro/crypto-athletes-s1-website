@@ -22,8 +22,8 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
     uint256 private constant MAX_ELEMENTS_CROWDSALE = 1 * 10**4 + 20; // 10020 Crypto Athletes in CrowdSale
     uint256 private constant MAX_ELEMENTS_PRESALE = 5 * 10**2; // 500 Crypto Athletes in PreSale
 
-    uint256 private constant MAX_MINT_CROWDSALE = 10; // Upper Limit is 10 in CrowdSale
-    uint256 private constant MAX_MINT_PRESALE = 2; // Upper Limit is 2 in PreSale
+    uint256 private constant MAX_MINT_CROWDSALE = 20; // Upper Limit is 10 in CrowdSale
+    uint256 private constant MAX_MINT_PRESALE = 5; // Upper Limit is 2 in PreSale
 
     address private constant ownerAddress = 0x0081aD52FF7Eb8B5165777aa6adCf7d80cBF647D; // Wallet Address of Owner
     address public constant developerAddress = 0xA7482C9c5926E88d85804A969c383730Ce100639; // Wallet Address of the Cory
@@ -35,7 +35,7 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
 
     string private baseTokenURI;
 
-    event CreateCryptoAthletes(uint256 indexed id);
+    event CreateCryptoAthletes(address to, uint256 indexed id);
 
     modifier saleIsOpen {
         require(_totalSupply() <= maxSalesAmount, "SALES: Sale end");
@@ -76,7 +76,7 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
         _safeMint(_to, _id);
         _isOccupiedId[_id] = true;
 
-        emit CreateCryptoAthletes(_id);
+        emit CreateCryptoAthletes(_to, _id);
     }
 
     function setBaseURI(string memory baseURI) public onlyOwner {
