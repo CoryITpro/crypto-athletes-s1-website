@@ -16,26 +16,27 @@ import Footer from "components/footer"
 import Alert from "components/alert"
 
 const Dashboard = ({
-  soldOutCounts,
-  walletAddress,
-  metadatas,
-  mintLoading,
-  onConnect,
-  onMint,
-  onMintCountChangeHandler,
-  mintCount,
-  onClickExpand,
-  expanded,
   error,
+  metadatas,
+  maxSupply,
+  mintCount,
+  mintLoading,
+  walletAddress,
+  soldOutCounts,
+  collapseExpanded,
+  onMintHandler,
   onAlertClickHandler,
+  onConnectWalletHandler,
+  onCollapseExpandHandler,
+  onMintCountChangeHandler,
 }) => (
   <div className="dashboard">
     <Alert error={error} onClickHandler={onAlertClickHandler} />
     <div
       className={`dashboard-expand-menu flex flex-column${
-        expanded ? " expanded" : ""
+        collapseExpanded ? " expanded" : ""
       }`}
-      onClick={onClickExpand}
+      onClick={onCollapseExpandHandler}
     >
       <div className="dashboard-expand-menu-close">
         <FontAwesomeIcon icon={faTimes} />
@@ -48,7 +49,7 @@ const Dashboard = ({
         smooth={true}
         offset={0}
         duration={500}
-        onClick={onClickExpand}
+        onClick={onCollapseExpandHandler}
       >
         Learn
       </Link>
@@ -60,7 +61,7 @@ const Dashboard = ({
         smooth={true}
         offset={50}
         duration={500}
-        onClick={onClickExpand}
+        onClick={onCollapseExpandHandler}
       >
         Rarity
       </Link>
@@ -72,7 +73,7 @@ const Dashboard = ({
         smooth={true}
         offset={0}
         duration={500}
-        onClick={onClickExpand}
+        onClick={onCollapseExpandHandler}
       >
         Roadmap
       </Link>
@@ -84,27 +85,29 @@ const Dashboard = ({
         smooth={true}
         offset={50}
         duration={500}
-        onClick={onClickExpand}
+        onClick={onCollapseExpandHandler}
       >
         FAQs
       </Link>
     </div>
     <div className="dashboard-hero-wrapper">
-      <Navbar onClickExpand={onClickExpand} />
+      <Navbar onClickExpand={onCollapseExpandHandler} />
       <Hero
+        maxSupply={maxSupply}
         soldOutCounts={soldOutCounts}
         walletAddress={walletAddress}
-        onConnect={onConnect}
+        onConnectWalletHandler={onConnectWalletHandler}
       />
     </div>
     <Minter
-      onMint={onMint}
-      onMintCountChangeHandler={onMintCountChangeHandler}
       mintCount={mintCount}
+      metadatas={metadatas}
+      maxSupply={maxSupply}
       mintLoading={mintLoading}
       soldOutCounts={soldOutCounts}
       walletAddress={walletAddress}
-      metadatas={metadatas}
+      onMintHandler={onMintHandler}
+      onMintCountChangeHandler={onMintCountChangeHandler}
     />
     <Learn />
     <Rarity />

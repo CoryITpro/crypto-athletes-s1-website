@@ -1,7 +1,6 @@
 import "./style.scss"
 
 import Button from "components/button"
-import { MAX_ELEMENT } from "configurations"
 
 const generateNFTDatas = (metadatas) => {
   return metadatas.map((data, index) => {
@@ -18,26 +17,27 @@ const generateNFTDatas = (metadatas) => {
 
 const Minter = ({
   onMint,
-  onMintCountChangeHandler,
   mintCount,
+  metadatas,
+  maxSupply,
   mintLoading,
   soldOutCounts,
   walletAddress,
-  metadatas,
+  onMintCountChangeHandler,
 }) => (
   <div className="minter">
     {walletAddress !== "" && (
       <>
         <div className="minter-wrapper flex">
-          {soldOutCounts === MAX_ELEMENT ? (
+          {soldOutCounts === maxSupply ? (
             "SOLD OUT | WOW !!!"
           ) : (
             <>
               <input
                 type="number"
                 min={1}
-                max={20}
-                value={mintCount}
+                max={mintCount}
+                defaultValue={mintCount}
                 onChange={onMintCountChangeHandler}
               />
               <Button

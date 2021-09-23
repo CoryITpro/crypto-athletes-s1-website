@@ -11,23 +11,29 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "./ERC721Pausable.sol";
 
 contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Pausable {
+
     using SafeMath for uint256;
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdTracker;
 
-    uint256 public constant MAX_ELEMENTS = 1 * 10**4 + 20;
-    uint256 public constant PRICE = 5 * 10**16;
-    uint256 public constant MAX_BY_MINT = 20;
-    address public constant ownerAddress = 0x0081aD52FF7Eb8B5165777aa6adCf7d80cBF647D;
-    address public constant developerAddress = 0xA7482C9c5926E88d85804A969c383730Ce100639;
+    uint256 private constant PRICE_PER_CA = 5 * 10**16; // 0.05ETH Per Crypto Athletes
 
-    uint256[] private ids;
+    uint256 private constant MAX_ELEMENTS_CROWDSALE = 1 * 10**4 + 20; // 10020 Crypto Athletes in CrowdSale
+    uint256 private constant MAX_ELEMENTS_PRESALE = 5 * 10**2; // 500 Crypto Athletes in PreSale
 
-    mapping(uint256 => bool) private isOccupied;
+    uint256 private constant MAX_MINT_CROWDSALE = 10; // Upper Limit is 10 in CrowdSale
+    uint256 private constant MAX_MINT_PRESALE = 2; // Upper Limit is 2 in PreSale
 
-    uint256 public maxSalesAmount;
-    string public baseTokenURI;
+    address private constant ownerAddress = 0x0081aD52FF7Eb8B5165777aa6adCf7d80cBF647D; // Wallet Address of Owner
+    address public constant developerAddress = 0xA7482C9c5926E88d85804A969c383730Ce100639; // Wallet Address of the Cory
+
+    mapping(uint256 => bool) private _isOccupiedId;
+
+    uint256 private maxSalesAmount;
+    uint256 private maxMintAmount;
+
+    string private baseTokenURI;
 
     event CreateCryptoAthletes(uint256 indexed id);
 
@@ -44,15 +50,8 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
         setBaseURI(baseURI);
         pause(true);
 
-        maxSalesAmount = MAX_ELEMENTS;
-    }
-
-    function _totalSupply() internal view returns (uint) {
-        return _tokenIdTracker.current();
-    }
-
-    function totalMint() public view returns (uint256) {
-        return _totalSupply();
+        maxSalesAmount = MAX_ELEMENTS_CROWDSALE;
+        maxMintAmount = MAX_MINT_CROWDSALE;
     }
 
     function mint(address payable _to, uint256[] memory _ids) public payable saleIsOpen {
@@ -60,11 +59,11 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
 
         require(total + _ids.length <= maxSalesAmount, "MINT: Current count exceeds maximum element count.");
         require(total <= maxSalesAmount, "MINT: Please go to the Opensea to buy Crypto Athletes.");
-        require(_ids.length <= MAX_BY_MINT, "MINT: Current count exceeds maximum mint count.");
+        require(_ids.length <= maxMintAmount, "MINT: Current count exceeds maximum mint count.");
         require(msg.value >= price(_ids.length), "MINT: Current value is below the sales price of Crypto Athletes");
 
         for (uint256 i = 0; i < _ids.length; i++) {
-            require(isOccupied[_ids[i]] == false, "That ");
+            require(_isOccupiedId[_ids[i]] == false, "MINT: Those ids already have been used for other customers");
         }
 
         for (uint256 i = 0; i < _ids.length; i++) {
@@ -72,34 +71,50 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
         }
     }
 
-    function startPreSale(uint256 presaleAmount) public onlyOwner {
-        require(presaleAmount != 0, "PRESALE: Presale amount can't be zero");
-
-        maxSalesAmount = presaleAmount;
-    }
-
-    function stopPreSale() public onlyOwner {
-        maxSalesAmount = MAX_ELEMENTS;
-    }
-
     function _mintAnElement(address payable _to, uint256 _id) private {
         _tokenIdTracker.increment();
         _safeMint(_to, _id);
-        isOccupied[_id] = true;
+        _isOccupiedId[_id] = true;
 
         emit CreateCryptoAthletes(_id);
     }
 
-    function price(uint256 _count) public pure returns (uint256) {
-        return PRICE.mul(_count);
+    function setBaseURI(string memory baseURI) public onlyOwner {
+        baseTokenURI = baseURI;
+    }
+
+    function startPreSale() public onlyOwner {
+        maxSalesAmount = MAX_ELEMENTS_PRESALE;
+        maxMintAmount = MAX_MINT_PRESALE;
+    }
+
+    function stopPreSale() public onlyOwner {
+        maxSalesAmount = MAX_ELEMENTS_CROWDSALE;
+        maxMintAmount = MAX_MINT_CROWDSALE;
     }
 
     function _baseURI() internal view virtual override returns (string memory) {
         return baseTokenURI;
     }
 
-    function setBaseURI(string memory baseURI) public onlyOwner {
-        baseTokenURI = baseURI;
+    function price(uint256 _count) public pure returns (uint256) {
+        return PRICE_PER_CA.mul(_count);
+    }
+
+    function _totalSupply() internal view returns (uint) {
+        return _tokenIdTracker.current();
+    }
+
+    function maxMint() public view returns (uint256) {
+        return maxMintAmount;
+    }
+
+    function maxSales() public view returns (uint256) {
+        return maxSalesAmount;
+    }
+
+    function raised() public view returns (uint256) {
+        return address(this).balance;
     }
 
     function getTokenIdsOfWallet(address _owner) external view returns (uint256[] memory) {
@@ -126,7 +141,7 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
 
     function withdrawAll() public payable onlyOwner {
         uint256 balance = address(this).balance;
-        require(balance > 0);
+        require(balance > 0, "WITHDRAW: No balance in contract");
 
         _widthdraw(developerAddress, balance.mul(3).div(100));
         _widthdraw(ownerAddress, address(this).balance);

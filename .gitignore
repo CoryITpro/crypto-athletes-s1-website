@@ -22,5 +22,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-truffle-config.js
+# environment variables
 .env
+
+# firebase debug log
+firebase-debug.log
