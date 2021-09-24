@@ -84,3 +84,15 @@ export const getCurrentMaxMint = async () => {
     return 0
   }
 }
+
+export const getOccupiedIds = async () => {
+  const contract = getContractWithoutSigner()
+
+  try {
+    let occupiedList = await contract.occupiedList()
+
+    return occupiedList
+  } catch (err) {
+    return 0
+  }
+}

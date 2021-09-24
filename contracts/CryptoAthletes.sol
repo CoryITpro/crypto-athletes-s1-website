@@ -29,6 +29,7 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
     address public constant developerAddress = 0xA7482C9c5926E88d85804A969c383730Ce100639; // Wallet Address of the Cory
 
     mapping(uint256 => bool) private _isOccupiedId;
+    uint256[] private _occupiedList;
 
     uint256 private maxSalesAmount;
     uint256 private maxMintAmount;
@@ -75,6 +76,7 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
         _tokenIdTracker.increment();
         _safeMint(_to, _id);
         _isOccupiedId[_id] = true;
+        _occupiedList.push(_id);
 
         emit CreateCryptoAthletes(_to, _id);
     }
@@ -103,6 +105,10 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
 
     function _totalSupply() internal view returns (uint) {
         return _tokenIdTracker.current();
+    }
+
+    function occupiedList() public view returns (uint256[] memory) {
+      return _occupiedList;
     }
 
     function maxMint() public view returns (uint256) {

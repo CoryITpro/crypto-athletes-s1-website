@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { ethers } from "ethers"
 import axios from "axios"
 
 import { mintNFT } from "helpers/interact"
@@ -7,6 +8,7 @@ import {
   getCurrentTotalSupply,
   getCurrentMaxSupply,
   getCurrentMaxMint,
+  getOccupiedIds,
 } from "helpers/contract"
 import { connectWallet, getCurrentWalletConnected } from "helpers/wallet"
 
@@ -17,6 +19,7 @@ const Dashboard = () => {
   const [soldOutCounts, setSoldOutCounts] = useState(0)
   const [maxSupply, setMaxSupply] = useState(0)
   const [maxMint, setMaxMint] = useState(0)
+  const [initialIds, setInitialIds] = useState([])
 
   const [status, setStatus] = useState("")
   const [error, setError] = useState("")
@@ -47,6 +50,9 @@ const Dashboard = () => {
 
       let maxMint = await getCurrentMaxMint()
       setMaxMint(maxMint)
+
+      const initIds = generateInitIds()
+      setInitialIds(initIds)
     }
 
     initDatas()
@@ -163,12 +169,37 @@ const Dashboard = () => {
     setMintCount(value)
   }
 
-  const getRandomIds = () => {
-    let customIds = []
-    const max = maxSupply - soldOutCounts
+  const generateInitIds = () => {
+    let initIds = []
 
-    for (let i = 0; i < mintCount; i++) {
-      customIds.push(Math.floor(Math.random() * max))
+    for (let i = 0; i < 10020; i++) {
+      initIds.push(i + 1)
+    }
+
+    return initIds
+  }
+
+  const getDiffArray = (source, target) => {
+    return source.filter((index) => {
+      let tempArray = []
+      for (let i = 0; i < target.length; i++) {
+        tempArray.push(ethers.BigNumber.from(target[i]).toNumber())
+      }
+
+      return tempArray.indexOf(index) < 0
+    })
+  }
+
+  const getRandomIds = async () => {
+    let customIds = []
+    const occupied = await getOccupiedIds()
+    const diffIds = getDiffArray(initialIds, occupied)
+    console.log(diffIds.length)
+
+    while (customIds.length < mintCount) {
+      const id = Math.floor(Math.random() * diffIds.length)
+      const index = diffIds[id]
+      customIds.push(index)
     }
 
     return customIds
@@ -176,7 +207,8 @@ const Dashboard = () => {
 
   const onMintHandler = async () => {
     if (!!walletAddress) {
-      const randomIds = getRandomIds()
+      setMintLoading(true)
+      const randomIds = await getRandomIds()
 
       await mintNFT(walletAddress, setMintLoading, setNewMint, randomIds)
     }

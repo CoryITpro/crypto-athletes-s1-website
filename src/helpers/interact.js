@@ -7,8 +7,6 @@ export const mintNFT = async (
   setNewMint,
   randomIds
 ) => {
-  setMintLoading(true)
-
   console.log(walletAddress, randomIds)
   const contract = getContractWithSigner()
 
@@ -16,10 +14,6 @@ export const mintNFT = async (
     const address = ethers.utils.getAddress(to)
     const newMintId = ethers.BigNumber.from(newId).toNumber()
 
-    console.log([
-      ethers.utils.getAddress(to),
-      ethers.BigNumber.from(newId).toNumber(),
-    ])
     setNewMint([address, newMintId])
   })
 
