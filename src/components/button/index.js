@@ -3,18 +3,28 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
 import "./style.scss"
 
-const Button = ({ to = "", children, mintLoading, ...otherProps }) => {
+const Button = ({
+  to = "",
+  children,
+  onMintHandler,
+  mintLoading,
+  ...otherProps
+}) => {
   return (
-    <div className="button flex" {...otherProps}>
+    <div
+      className="button flex"
+      {...otherProps}
+      onClick={() => {
+        return mintLoading ? "" : onMintHandler()
+      }}
+    >
+      {mintLoading && <FontAwesomeIcon icon={faSpinner} />}
       {to === "" ? (
         <span>{children}</span>
       ) : (
-        <>
-          {mintLoading && <FontAwesomeIcon icon={faSpinner} />}
-          <Link to={{ pathname: to }} target="_blank">
-            {children}
-          </Link>
-        </>
+        <Link to={{ pathname: to }} target="_blank">
+          {children}
+        </Link>
       )}
     </div>
   )

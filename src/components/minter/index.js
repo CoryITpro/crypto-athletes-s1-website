@@ -43,7 +43,7 @@ const Minter = ({
               />
               <Button
                 children="Mint 0.05ETH Crypto Athletes"
-                onClick={onMintHandler}
+                onMintHandler={onMintHandler}
                 mintLoading={mintLoading}
               />
             </>

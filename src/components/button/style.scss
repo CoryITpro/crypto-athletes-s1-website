@@ -2,6 +2,7 @@
 
 .button {
   position: relative;
+  align-items: center;
   justify-content: center;
   font-size: 24px;
   font-weight: bolder;
@@ -43,6 +44,11 @@
     background-color: $Purple-dark;
   }
 
+  & > svg {
+    margin-right: 16px;
+    animation: spin 1s infinite;
+  }
+
   & > span {
     z-index: 3;
     white-space: nowrap;
@@ -52,5 +58,14 @@
     text-decoration: none;
     color: $White;
     white-space: nowrap;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
