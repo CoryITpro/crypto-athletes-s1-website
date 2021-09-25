@@ -15,7 +15,9 @@ const Button = ({
       className="button flex"
       {...otherProps}
       onClick={() => {
-        return mintLoading ? "" : onMintHandler()
+        if (mintLoading) {
+          return onMintHandler()
+        }
       }}
     >
       {mintLoading && <FontAwesomeIcon icon={faSpinner} />}
