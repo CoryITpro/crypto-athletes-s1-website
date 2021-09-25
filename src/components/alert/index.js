@@ -6,7 +6,7 @@ const Alert = ({ error, onClickHandler }) => (
       <div className="alert-header flex">Error</div>
       <div className="alert-body flex">{error}</div>
       <div className="alert-controls flex">
-        <button>Okay</button>
+        <button onClick={onClickHandler}>Okay</button>
       </div>
     </div>
   </div>

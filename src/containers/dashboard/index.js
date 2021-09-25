@@ -210,7 +210,16 @@ const Dashboard = () => {
       setMintLoading(true)
       const randomIds = await getRandomIds()
 
-      await mintNFT(walletAddress, setMintLoading, setNewMint, randomIds)
+      const { _, status } = await mintNFT(
+        walletAddress,
+        setMintLoading,
+        setNewMint,
+        randomIds
+      )
+
+      if (status.indexOf("insufficient fund") >= 0) {
+        setError("You don't have enough eths to mint CA!")
+      }
     }
   }
 

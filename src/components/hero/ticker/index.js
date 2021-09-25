@@ -29,7 +29,7 @@ const Ticker = ({
     <Button
       to={
         soldOutCounts === maxSupply
-          ? "https://opensea.io/collection/Crypto_Athletes"
+          ? "https://opensea.io/collection/cryptoathletes"
           : ""
       }
       children={

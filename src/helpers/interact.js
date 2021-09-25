@@ -44,7 +44,7 @@ export const mintNFT = async (
     setMintLoading(false)
     return {
       success: false,
-      status: "Transaction failed",
+      status: err.message,
     }
   }
 }
