@@ -1,5 +1,12 @@
-import AppRouter from "router"
+import { Suspense, lazy } from "react"
+import Loading from "components/loading"
 
-const App = () => <AppRouter />
+const AppRouter = lazy(() => import("router"))
+
+const App = () => (
+  <Suspense fallback={<Loading />}>
+    <AppRouter />
+  </Suspense>
+)
 
 export default App

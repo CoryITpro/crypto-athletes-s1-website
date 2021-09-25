@@ -12,7 +12,9 @@ const Hero = ({
   return (
     <>
       <div className="hero flex flex-column">
-        <img src={BANNER} alt="banner" />
+        <div className="flex">
+          <img src={BANNER} alt="banner" />
+        </div>
         <div className="hero-wallet flex flex-column">
           <Ticker
             maxSupply={maxSupply}

@@ -12,7 +12,6 @@
     background-color: $Purple-light;
     align-items: center;
     padding: 128px 0 0;
-    gap: 32px;
     z-index: 99;
 
     &-close {
@@ -26,6 +25,10 @@
           color: $Magenta;
         }
       }
+    }
+
+    & > a {
+      margin-top: 32px;
     }
   }
 

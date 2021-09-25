@@ -34,7 +34,9 @@
   }
 
   &-links {
-    gap: 36px;
+    & > a:not(:last-child) {
+      margin-right: 32px;
+    }
   }
 
   &-anchor-link {

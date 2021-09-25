@@ -15,7 +15,7 @@ const Button = ({
       className="button flex"
       {...otherProps}
       onClick={() => {
-        if (mintLoading) {
+        if (!mintLoading) {
           return onMintHandler()
         }
       }}

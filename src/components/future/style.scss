@@ -4,7 +4,6 @@
   width: 100%;
   padding: 64px calc((100vw - 1280px) / 2);
   background-color: $Gold;
-  gap: 24px;
 
   & > div {
     width: calc(50% - 12px);
@@ -22,12 +21,13 @@
     color: $Black-dark;
     font-size: 18px;
     padding: 0 64px 0 0;
-    gap: 16px;
+    margin-left: 24px;
 
     & > span {
       font-size: 40px;
       font-weight: bold;
       color: $Black-dark;
+      margin-bottom: 16px;
     }
   }
 }
@@ -50,6 +50,7 @@
     & > p {
       width: 100%;
       padding: 0 32px;
+      margin-left: 0;
     }
   }
 }
@@ -64,6 +65,10 @@
     & > p {
       width: 100%;
       padding: 0 8px;
+
+      & > span {
+        margin-bottom: 0;
+      }
     }
   }
 }

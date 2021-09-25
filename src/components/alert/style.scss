@@ -16,7 +16,10 @@
     padding: 32px;
     background-color: $White;
     border-radius: 16px;
-    gap: 16px;
+
+    & > div:not(:last-child) {
+      margin-top: 16px;
+    }
   }
 
   &-header {

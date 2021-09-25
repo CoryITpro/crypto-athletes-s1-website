@@ -4,7 +4,6 @@
   width: 100%;
   padding: 64px calc((100vw - 1280px) / 2);
   background-color: $White-gray;
-  gap: 32px;
 
   & > span {
     padding: 0 64px;
@@ -15,6 +14,10 @@
   &-item {
     padding: 0 64px;
     z-index: 2;
+
+    &:not(:last-child) {
+      margin-top: 32px;
+    }
 
     &-title {
       font-size: 28px;
@@ -29,7 +32,7 @@
       }
 
       & > a {
-        color: $Black-dark;
+        color: $Purple;
       }
     }
   }
@@ -37,7 +40,6 @@
   &-decoration {
     width: 100%;
     justify-content: flex-end;
-    margin-top: -32px;
     z-index: 1;
 
     & > img {
@@ -58,6 +60,10 @@
 
     &-item {
       padding: 0 32px;
+
+      &:not(:last-child) {
+        margin-top: 24px;
+      }
     }
   }
 }
@@ -71,6 +77,10 @@
     &-item {
       padding: 0 8px;
 
+      &:not(:last-child) {
+        margin-top: 16px;
+      }
+
       &-title {
         font-size: 24px;
         font-weight: bold;
@@ -79,6 +89,10 @@
       &-content {
         font-size: 16px;
       }
+    }
+
+    &-decoration {
+      margin-top: 0;
     }
   }
 }

@@ -7,13 +7,12 @@
 
   &-wrapper {
     padding: 0 64px;
-    gap: 64px;
     align-items: center;
 
     &-comments {
       width: 100%;
       justify-content: center;
-      gap: 36px;
+      margin-right: 64px;
 
       &-title {
         font-size: 40px;
@@ -22,6 +21,7 @@
 
       &-content {
         font-size: 18px;
+        margin-top: 32px;
       }
     }
 
@@ -39,12 +39,15 @@
   .learn {
     &-wrapper {
       padding: 0 32px;
-      gap: 32px;
       flex-direction: column-reverse !important;
       align-items: center;
 
       &-comments {
-        gap: 16px;
+        margin: 32px 0 0;
+
+        &-content {
+          margin-top: 16px;
+        }
       }
 
       &-img {
@@ -60,10 +63,11 @@
       padding: 0 8px;
 
       &-comments {
-        gap: 0px;
+        margin: 0;
 
         &-content {
           padding-right: 0;
+          margin-top: 0;
         }
       }
     }

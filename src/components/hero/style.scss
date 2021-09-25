@@ -4,10 +4,14 @@
   width: 100%;
   padding: 128px calc((100vw - 1280px) / 2) 0 calc((100vw - 1280px) / 2);
 
-  & > img {
+  & > div {
     padding: 0 64px;
-    height: stretch;
-    height: intrinsic;
+
+    & > img {
+      width: 100%;
+      height: stretch;
+      height: intrinsic;
+    }
   }
 
   &-wallet {
@@ -15,7 +19,6 @@
     width: 100%;
     padding: 0 64px;
     align-items: center;
-    gap: 36px;
     z-index: 2;
 
     &-purchase {
@@ -25,15 +28,14 @@
       align-items: center;
       justify-content: space-between;
       border-radius: 16px;
-      gap: 128px;
 
       &-ticker {
-        gap: 36px;
         align-items: center;
 
         & > span {
           font-size: 18px;
           font-weight: bold;
+          margin-right: 24px;
         }
 
         &-counts {
@@ -56,7 +58,7 @@
 
 @media (max-width: 1024px) {
   .hero {
-    & > img {
+    & > div {
       padding: 0 32px;
     }
 
@@ -64,11 +66,13 @@
       padding: 0 32px;
 
       &-purchase {
-        gap: 64px;
-
         &-ticker {
           flex-direction: column !important;
-          gap: 12px;
+          margin-bottom: 32px;
+
+          & > span {
+            margin: 0 0 12px;
+          }
 
           & > p {
             margin: 0;
@@ -82,7 +86,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    & > img {
+    & > div {
       padding: 0 8px;
     }
 
@@ -92,7 +96,6 @@
       &-purchase {
         padding: 16px;
         flex-direction: column !important;
-        gap: 32px;
       }
     }
   }

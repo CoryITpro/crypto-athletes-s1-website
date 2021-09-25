@@ -18,12 +18,15 @@
   }
 
   &-contacts {
-    gap: 36px;
     align-items: center;
 
     & > a {
       color: $White;
       text-decoration: none;
+
+      &:not(:last-child) {
+        margin-right: 32px;
+      }
 
       & > svg {
         font-size: 48px;
@@ -51,9 +54,11 @@
     padding: 32px calc((100vw - 1280px) / 2);
 
     &-contacts {
-      gap: 24px;
-
       & > a {
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
+
         & > svg {
           font-size: 32px;
         }
@@ -75,6 +80,10 @@
 
     &-logo {
       & > a {
+        &:not(:last-child) {
+          margin-right: 16px;
+        }
+
         & > img {
           margin-top: -12px;
           width: 72px;
@@ -83,8 +92,6 @@
     }
 
     &-contacts {
-      gap: 12px;
-
       & > a {
         & > svg {
           font-size: 24px;

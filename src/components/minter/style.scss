@@ -13,7 +13,6 @@
     justify-content: center;
     text-align: center;
     padding: 32px 0;
-    gap: 24px;
 
     @media (max-width: 425px) {
       flex-direction: column !important;
@@ -27,7 +26,12 @@
       padding: 16px 24px;
       width: 150px;
       font-weight: bold;
+      margin-right: 24px;
       -moz-appearance: textfield;
+
+      @media (max-width: 425px) {
+        margin: 0 0 24px 0;
+      }
 
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
@@ -61,7 +65,6 @@
       flex-wrap: nowrap;
       overflow-x: auto;
       height: 100%;
-      gap: 24px;
 
       &-item {
         width: 240px;
@@ -72,6 +75,10 @@
         background-color: $Platinum;
         box-shadow: 0 2px 8px rgba($color: $Black-dark, $alpha: 0.5);
         padding: 4px;
+
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
 
         & > img {
           width: 100%;
