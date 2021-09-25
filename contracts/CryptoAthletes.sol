@@ -25,7 +25,7 @@ contract CryptoAthletes is ERC721Enumerable, Ownable, ERC721Burnable, ERC721Paus
     uint256 private constant MAX_MINT_CROWDSALE = 20; // Upper Limit is 10 in CrowdSale
     uint256 private constant MAX_MINT_PRESALE = 5; // Upper Limit is 2 in PreSale
 
-    address private constant ownerAddress = 0x0081aD52FF7Eb8B5165777aa6adCf7d80cBF647D; // Wallet Address of Owner
+    address private constant ownerAddress = 0x13e0b8D8496C5211710241Bf51BAA889f0733a4e; // Wallet Address of Owner
     address public constant developerAddress = 0xA7482C9c5926E88d85804A969c383730Ce100639; // Wallet Address of the Cory
 
     mapping(uint256 => bool) private _isOccupiedId;

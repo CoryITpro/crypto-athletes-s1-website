@@ -18,7 +18,7 @@ export const getContractWithSigner = () => {
 
 // Contract can be used to read Contract
 const getContractWithoutSigner = () => {
-  const infuraProvider = new ethers.providers.InfuraProvider("rinkeby")
+  const infuraProvider = new ethers.providers.Web3Provider(window.ethereum)
 
   const contract = new ethers.Contract(
     ENVS.CONTRACT_ADDRESS,
@@ -43,6 +43,7 @@ export const getTokenIdsOfWallet = async (walletAddress) => {
     return tokenIds
   } catch (err) {
     console.log("Get NFT Ids Fail:", err)
+    return []
   }
 }
 

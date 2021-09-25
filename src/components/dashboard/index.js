@@ -11,7 +11,7 @@ import Rarity from "components/rarity"
 import FuturePlans from "components/future"
 import Roadmap from "components/roadmap"
 import FAQ from "components/faq"
-import TeamMembers from "components/team"
+// import TeamMembers from "components/team"
 import Footer from "components/footer"
 
 import Alert from "components/alert"
@@ -117,7 +117,7 @@ const Dashboard = ({
     <FuturePlans />
     <Roadmap />
     <FAQ />
-    <TeamMembers />
+    {/* <TeamMembers /> */}
     <Footer />
   </div>
 )
