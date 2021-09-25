@@ -7,19 +7,12 @@ const Button = ({
   to = "",
   children,
   onMintHandler,
+  isConnector = false,
   mintLoading,
   ...otherProps
 }) => {
   return (
-    <div
-      className="button flex"
-      {...otherProps}
-      onClick={() => {
-        if (!mintLoading) {
-          return onMintHandler()
-        }
-      }}
-    >
+    <div className="button flex" {...otherProps}>
       {mintLoading && <FontAwesomeIcon icon={faSpinner} />}
       {to === "" ? (
         <span>{children}</span>

@@ -1,14 +1,17 @@
+import detectEthereumProvider from "@metamask/detect-provider"
 import { ENVS } from "configurations/index"
 
 export const connectWallet = async () => {
-  if (window.ethereum) {
+  const provider = await detectEthereumProvider()
+
+  if (provider) {
     try {
-      const walletChainId = await window.ethereum.request({
+      const walletChainId = await provider.request({
         method: "eth_chainId",
       })
 
       if (parseInt(walletChainId) === parseInt(ENVS.CHAIN_ID)) {
-        const addressArray = await window.ethereum.request({
+        const addressArray = await provider.request({
           method: "eth_requestAccounts",
         })
 
@@ -24,7 +27,7 @@ export const connectWallet = async () => {
           }
         }
       } else {
-        window.ethereum.request({
+        provider.request({
           method: "wallet_switchEthereumChain",
           params: [{ chainId: ENVS.CHAIN_ID }],
         })
@@ -51,12 +54,14 @@ export const connectWallet = async () => {
 }
 
 export const getCurrentWalletConnected = async () => {
-  if (window.ethereum) {
+  const provider = await detectEthereumProvider()
+
+  if (provider) {
     try {
-      const addressArray = await window.ethereum.request({
+      const addressArray = await provider.request({
         method: "eth_accounts",
       })
-      const walletChainId = await window.ethereum.request({
+      const walletChainId = await provider.request({
         method: "eth_chainId",
       })
       if (addressArray.length && walletChainId === ENVS.CHAIN_ID) {

@@ -27,8 +27,8 @@ const Dashboard = ({
   soldOutCounts,
   collapseExpanded,
   onMintHandler,
-  onAlertClickHandler,
   onConnectWalletHandler,
+  onAlertClickHandler,
   onCollapseExpandHandler,
   onMintCountChangeHandler,
 }) => (
