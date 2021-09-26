@@ -101,7 +101,7 @@ const Dashboard = ({
         onConnectWalletHandler={onConnectWalletHandler}
       />
     </div>
-    <Minter
+    {/* <Minter
       maxMint={maxMint}
       mintCount={mintCount}
       metadatas={metadatas}
@@ -111,7 +111,7 @@ const Dashboard = ({
       walletAddress={walletAddress}
       onMintHandler={onMintHandler}
       onMintCountChangeHandler={onMintCountChangeHandler}
-    />
+    /> */}
     <Learn />
     <Rarity />
     <FuturePlans />
