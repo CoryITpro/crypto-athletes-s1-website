@@ -13,7 +13,7 @@ const Ticker = ({
 }) => (
   <div className="hero-wallet-purchase flex">
     <div className="hero-wallet-purchase-ticker flex">
-      <span>Total Minted</span>
+      {/* <span>Total Minted</span>
       <span className="hero-wallet-purchase-ticker-counts">{`${soldOutCounts} / ${maxSupply}`}</span>
       {soldOutCounts === maxSupply ? (
         <p>
@@ -24,9 +24,12 @@ const Ticker = ({
         <p>Connect your wallet to buy Crypto Athletes</p>
       ) : (
         <p>Mint Your Own Crypto Athlete</p>
-      )}
+      )} */}
+      <p>
+        <span>Pre-sale</span> soon, Join the discord for news!
+      </p>
     </div>
-    <Button
+    {/* <Button
       to={
         soldOutCounts === maxSupply
           ? "https://opensea.io/collection/cryptoathletes"
@@ -44,7 +47,8 @@ const Ticker = ({
           ? onConnectWalletHandler
           : () => {}
       }
-    />
+    /> */}
+    <Button to={"https://discord.gg/wS2cKz8E"} children="Join the Discord" />
   </div>
 )
 
