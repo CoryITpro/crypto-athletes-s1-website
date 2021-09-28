@@ -6,7 +6,7 @@ const generateNFTDatas = (metadatas) => {
   return metadatas.map((data, index) => {
     return (
       <div key={index} className="minter-gallery-show-item flex flex-column">
-        <img src={data.image || ""} alt="nft" />
+        <img src={data.image || ""} alt="nft" loading="lazy" />
         <div className="minter-gallery-show-item-info flex felx-column">
           <p className="name">{data.name}</p>
         </div>
