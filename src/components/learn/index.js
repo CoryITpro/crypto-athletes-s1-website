@@ -10,7 +10,7 @@ const Learn = () => (
           What are Crypto Athletes?
         </div>
         <div className="learn-wrapper-comments-content">
-          CryptoAtletes are 10,000 unique players balling on the Ethereum
+          CryptoAthletes are 10,000 unique players balling on the Ethereum
           Blockchain in style. With different chains, teams, hair, and more
           fashionable styles, there are more than 450,000,000 different possible
           options for our ballers, but only 10,000 are made. All players will be
