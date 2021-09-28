@@ -48,7 +48,7 @@ const Ticker = ({
           : () => {}
       }
     />
-    <Button to={"https://discord.gg/wS2cKz8E"} children="Join the Discord" />
+    {/* <Button to={"https://discord.gg/wS2cKz8E"} children="Join the Discord" /> */}
   </div>
 )
 
