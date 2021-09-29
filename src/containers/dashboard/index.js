@@ -169,7 +169,6 @@ const Dashboard = () => {
         ? 1
         : e.target.value
 
-    console.log(value)
     setMintCount(value)
   }
 
@@ -198,7 +197,6 @@ const Dashboard = () => {
     let customIds = []
     const occupied = await getOccupiedIds()
     const diffIds = getDiffArray(initialIds, occupied)
-    console.log(diffIds.length)
 
     while (customIds.length < mintCount) {
       const id = Math.floor(Math.random() * diffIds.length)

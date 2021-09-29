@@ -7,7 +7,6 @@ export const mintNFT = async (
   setNewMint,
   randomIds
 ) => {
-  console.log(walletAddress, randomIds)
   const contract = getContractWithSigner()
 
   contract.on("CreateCryptoAthletes(address, uint256)", (to, newId) => {
@@ -40,7 +39,6 @@ export const mintNFT = async (
       }
     }
   } catch (err) {
-    console.log(err.message)
     setMintLoading(false)
     return {
       success: false,

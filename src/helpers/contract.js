@@ -42,7 +42,6 @@ export const getTokenIdsOfWallet = async (walletAddress) => {
 
     return tokenIds
   } catch (err) {
-    console.log("Get NFT Ids Fail:", err)
     return []
   }
 }
