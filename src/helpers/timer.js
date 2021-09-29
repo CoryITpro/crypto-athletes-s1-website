@@ -9,8 +9,6 @@ export const calculateTimeLeft = () => {
   const presaleDate = new Date(Date.UTC(2021, 9, 5, 23, 0, 0))
   const difference = presaleDate - new Date()
 
-  console.log(presaleDate, new Date(), difference)
-
   let timeLeft = {}
 
   if (difference > 0) {
