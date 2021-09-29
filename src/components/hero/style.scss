@@ -32,7 +32,7 @@
       &-ticker {
         align-items: center;
 
-        & > p {
+        & > span {
           font-size: 24px !important;
           font-weight: bold;
           white-space: nowrap;
@@ -54,8 +54,10 @@
 
         & > p {
           max-width: 360px;
-          font-size: 18px;
+          font-size: 20px;
+          text-align: center;
           line-height: 24px;
+          font-weight: bold;
         }
       }
 
@@ -78,10 +80,10 @@
       &-purchase {
         &-ticker {
           flex-direction: column !important;
-          // margin-bottom: 32px;
 
-          & > p {
+          & > span {
             white-space: normal;
+            text-align: center;
           }
 
           & > span {
@@ -117,4 +119,8 @@
       }
     }
   }
+}
+
+.warning {
+  color: $Magenta;
 }

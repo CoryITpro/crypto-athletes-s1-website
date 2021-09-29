@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react"
+import { calculateTimeLeft } from "helpers/timer"
+
 import "./style.scss"
 
 import Button from "components/button"
@@ -25,46 +28,79 @@ const Minter = ({
   walletAddress,
   onMintHandler,
   onMintCountChangeHandler,
-}) => (
-  <div className="minter">
-    {walletAddress !== "" && (
-      <>
-        <div className="minter-wrapper flex">
-          {soldOutCounts === maxSupply ? (
-            "SOLD OUT | WOW !!!"
-          ) : (
-            <>
-              <input
-                type="number"
-                min={1}
-                max={maxMint}
-                defaultValue={mintCount}
-                onChange={onMintCountChangeHandler}
-              />
-              <Button
-                children="Mint 0.05ETH Crypto Athletes"
-                mintLoading={mintLoading}
-                onMintHandler={onMintHandler}
-                onClick={() => {
-                  if (!mintLoading) {
-                    return onMintHandler()
-                  }
-                }}
-              />
-            </>
-          )}
-        </div>
-        {metadatas.length !== 0 && (
-          <div className="minter-gallery flex flex-column">
-            <span>Your Gallery</span>
-            <div className="minter-gallery-show flex">
-              {generateNFTDatas(metadatas)}
+}) => {
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeLeft(calculateTimeLeft())
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [timeLeft])
+
+  return (
+    <div className="minter">
+      {Object.keys(timeLeft).length === 0 ? (
+        walletAddress !== "" && (
+          <>
+            <div className="minter-wrapper flex">
+              {soldOutCounts === maxSupply ? (
+                "SOLD OUT | WOW !!!"
+              ) : (
+                <>
+                  <input
+                    type="number"
+                    min={1}
+                    max={maxMint}
+                    defaultValue={mintCount}
+                    onChange={onMintCountChangeHandler}
+                  />
+                  <Button
+                    children="Mint 0.05ETH Crypto Athletes"
+                    mintLoading={mintLoading}
+                    onMintHandler={onMintHandler}
+                    onClick={() => {
+                      if (!mintLoading) {
+                        return onMintHandler()
+                      }
+                    }}
+                  />
+                </>
+              )}
             </div>
+            {metadatas.length !== 0 && (
+              <div className="minter-gallery flex flex-column">
+                <span>Your Gallery</span>
+                <div className="minter-gallery-show flex">
+                  {generateNFTDatas(metadatas)}
+                </div>
+              </div>
+            )}
+          </>
+        )
+      ) : (
+        <div className="minter-timer flex">
+          <div className="mint-timer-item flex flex-column">
+            {timeLeft.days}
+            <span>Days</span>
           </div>
-        )}
-      </>
-    )}
-  </div>
-)
+          <div className="mint-timer-item flex flex-column">
+            {timeLeft.hours}
+            <span>Hours</span>
+          </div>
+          <div className="mint-timer-item flex flex-column">
+            {timeLeft.minutes}
+            <span>Minutes</span>
+          </div>
+          <div className="mint-timer-item flex flex-column">
+            {timeLeft.seconds}
+            <span>Seconds</span>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
 
 export default Minter

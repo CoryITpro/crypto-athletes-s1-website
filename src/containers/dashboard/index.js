@@ -34,25 +34,27 @@ const Dashboard = () => {
 
   useEffect(() => {
     const initDatas = async () => {
-      const { address, status } = await getCurrentWalletConnected()
+      if (window.ethereum) {
+        const { address, status } = await getCurrentWalletConnected()
 
-      setWalletAddress(address)
-      setStatus(status)
+        setWalletAddress(address)
+        setStatus(status)
 
-      onChangeWalletListener()
-      onConnectWalletHandler()
+        onChangeWalletListener()
+        onConnectWalletHandler()
 
-      let totalSupply = await getCurrentTotalSupply()
-      setSoldOutCounts(totalSupply)
+        let totalSupply = await getCurrentTotalSupply()
+        setSoldOutCounts(totalSupply)
 
-      let maxSupply = await getCurrentMaxSupply()
-      setMaxSupply(maxSupply)
+        let maxSupply = await getCurrentMaxSupply()
+        setMaxSupply(maxSupply)
 
-      let maxMint = await getCurrentMaxMint()
-      setMaxMint(maxMint)
+        let maxMint = await getCurrentMaxMint()
+        setMaxMint(maxMint)
 
-      const initIds = generateInitIds()
-      setInitialIds(initIds)
+        const initIds = generateInitIds()
+        setInitialIds(initIds)
+      }
     }
 
     initDatas()
@@ -76,14 +78,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     const getSoldOuts = async () => {
-      let totalSupply = await getCurrentTotalSupply()
+      if (window.ethereum) {
+        let totalSupply = await getCurrentTotalSupply()
 
-      setSoldOutCounts(totalSupply)
+        setSoldOutCounts(totalSupply)
 
-      if (newMint[0] && newMint[0].toLowerCase() === walletAddress) {
-        let tokenIdsOfWallet = await getTokenIdsOfWallet(walletAddress)
+        if (newMint[0] && newMint[0].toLowerCase() === walletAddress) {
+          let tokenIdsOfWallet = await getTokenIdsOfWallet(walletAddress)
 
-        fetchMetaDatas(tokenIdsOfWallet)
+          fetchMetaDatas(tokenIdsOfWallet)
+        }
       }
     }
 

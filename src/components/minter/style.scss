@@ -100,6 +100,55 @@
       }
     }
   }
+
+  &-timer {
+    width: 100%;
+    color: $Magenta;
+    font-weight: bold;
+    font-size: 64px;
+    justify-content: center;
+    text-align: center;
+    padding: 32px 0;
+
+    & > div {
+      position: relative;
+      border-radius: 16px;
+      width: 96px;
+
+      &:not(:last-child) {
+        margin-right: 48px;
+      }
+
+      & > span {
+        font-size: 14px;
+        color: $Purple;
+      }
+    }
+
+    @media (max-width: 768px) {
+      font-size: 48px;
+
+      & > div {
+        width: 72px;
+
+        &:not(:last-child) {
+          margin-right: 32px;
+        }
+      }
+    }
+
+    @media (max-width: 425px) {
+      font-size: 40px;
+
+      & > div {
+        width: 64px;
+
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 1024px) {
