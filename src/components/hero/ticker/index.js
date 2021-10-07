@@ -45,7 +45,7 @@ const Ticker = ({
           </>
         ) : (
           <span>
-            <span>Pre-sale</span> soon, Join the discord for news!
+            <span>Public Sale</span> soon, Join the discord for news!
           </span>
         )}
       </div>
