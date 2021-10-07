@@ -1,5 +1,5 @@
 export const calculateTimeLeft = () => {
-  const presaleDate = new Date(Date.UTC(2021, 9, 9, 23, 0, 0))
+  const presaleDate = new Date(Date.UTC(2021, 9, 12, 23, 0, 0))
   const difference = presaleDate - new Date()
 
   let timeLeft = {}
