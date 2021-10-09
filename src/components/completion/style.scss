@@ -1,0 +1,170 @@
+@import "../../styles/variables.scss";
+
+.completion {
+  position: relative;
+  width: 100%;
+  padding: 64px calc((100vw - 1280px) / 2);
+  overflow: hidden;
+  background-image: url("../../resources/Mastercard_Background.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: calc((100% - 1280px) / 2 + (70% - ((100% - 1280px) / 2)));
+    transform-origin: bottom;
+    transform: skew(20deg);
+    background-image: url("../../resources/CA_Background.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 0;
+
+    @media (max-width: 768px) {
+      transform-origin: top;
+      transform: skew(160deg);
+    }
+  }
+
+  & > span {
+    position: inherit;
+    padding: 0 64px;
+    font-size: 40px;
+    font-weight: bold;
+    color: $Gold;
+
+    @media (max-width: 1024px) {
+      padding: 0 32px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0 8px;
+    }
+  }
+
+  &-wrapper {
+    position: inherit;
+    display: grid;
+    grid-template-columns: 65% 35%;
+    padding: 0 64px;
+    color: $White;
+    font-size: 18px;
+
+    @media (max-width: 1024px) {
+      padding: 0 32px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0 8px;
+      grid-template-columns: 100%;
+    }
+
+    & > p {
+      width: 100%;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: pre-wrap;
+      color: $White-gray;
+
+      @media (max-width: 768px) {
+        padding-left: 0;
+      }
+
+      &:nth-child(1) {
+        padding-left: 0;
+        padding-right: 25%;
+
+        @media (max-width: 768px) {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  &-mobile {
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-top: 36px;
+    justify-content: center;
+    gap: 24px;
+
+    @media (max-width: 768px) {
+      display: grid;
+      grid-template-columns: calc(33% - 12px) calc(33% - 12px) calc(33% - 12px);
+    }
+
+    & > svg {
+      font-size: 64px;
+      color: $Gold;
+      margin: 0 36px;
+      grid-row: 2;
+      grid-column-start: 2;
+      grid-column-end: 3;
+      transform: rotate(90deg);
+      justify-self: center;
+    }
+
+    & > div {
+      width: 100%;
+      border-radius: 16px;
+      border: 2px solid $Gold;
+      margin-right: 24px;
+      overflow: hidden;
+
+      &:last-child {
+        border-color: $Silver;
+        grid-row: 3;
+        grid-column-start: 2;
+        grid-column-end: 3;
+      }
+
+      & > img {
+        width: 100%;
+      }
+    }
+  }
+
+  &-pc {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-top: 36px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+
+    & > svg {
+      font-size: 64px;
+      color: $Gold;
+      margin: 0 36px;
+    }
+
+    & > div {
+      width: 100%;
+      border-radius: 16px;
+      border: 2px solid $Gold;
+      margin-right: 24px;
+      overflow: hidden;
+
+      &:last-child {
+        border-color: $Magenta;
+      }
+
+      & > img {
+        width: 100%;
+      }
+    }
+  }
+}

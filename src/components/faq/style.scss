@@ -9,23 +9,55 @@
     padding: 0 64px;
     font-size: 40px;
     font-weight: bold;
+
+    @media (max-width: 1024px) {
+      padding: 0 32px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0 8px;
+    }
   }
 
   &-item {
     padding: 0 64px;
     z-index: 2;
 
+    @media (max-width: 1024px) {
+      padding: 0 32px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0 8px;
+    }
+
     &:not(:last-child) {
       margin-top: 32px;
+
+      @media (max-width: 1024px) {
+        padding: 0 24px;
+      }
+
+      @media (max-width: 768px) {
+        padding: 0 16px;
+      }
     }
 
     &-title {
       font-size: 28px;
       font-weight: bold;
+
+      @media (max-width: 768px) {
+        font-size: 24px;
+      }
     }
 
     &-content {
       font-size: 18px;
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
 
       & span {
         font-weight: bold;
@@ -42,57 +74,14 @@
     justify-content: flex-end;
     z-index: 1;
 
+    @media (max-width: 768px) {
+      margin-top: 0;
+    }
+
     & > img {
       width: 360px;
       height: stretch;
       height: intrinsic;
-    }
-  }
-}
-
-@media (max-width: 1024px) {
-  .faqs {
-    & > span {
-      padding: 0 32px;
-      font-size: 40px;
-      font-weight: bold;
-    }
-
-    &-item {
-      padding: 0 32px;
-
-      &:not(:last-child) {
-        margin-top: 24px;
-      }
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .faqs {
-    & > span {
-      padding: 0 8px;
-    }
-
-    &-item {
-      padding: 0 8px;
-
-      &:not(:last-child) {
-        margin-top: 16px;
-      }
-
-      &-title {
-        font-size: 24px;
-        font-weight: bold;
-      }
-
-      &-content {
-        font-size: 16px;
-      }
-    }
-
-    &-decoration {
-      margin-top: 0;
     }
   }
 }
