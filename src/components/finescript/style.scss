@@ -2,12 +2,12 @@
 
 .finescript {
   width: 100%;
-  padding: 8px calc((100vw - 1280px) / 2) 64px;
+  padding: 8px calc((100vw - 1280px) / 2) 16px;
   background-color: $White-gray;
 
   & > span {
     padding: 0 64px;
-    font-size: 14px;
+    font-size: 12px;
 
     @media (max-width: 1024px) {
       padding: 0 32px;
@@ -15,6 +15,7 @@
 
     @media (max-width: 768px) {
       padding: 0 8px;
+      font-size: 10px;
     }
   }
 }
