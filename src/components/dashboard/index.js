@@ -12,7 +12,7 @@ import Rarity from "components/rarity"
 import FuturePlans from "components/future"
 import Roadmap from "components/roadmap"
 import FAQ from "components/faq"
-// import TeamMembers from "components/team"
+import FineScript from "components/finescript"
 import Footer from "components/footer"
 
 import Alert from "components/alert"
@@ -120,6 +120,7 @@ const Dashboard = ({
     <Roadmap />
     <FAQ />
     {/* <TeamMembers /> */}
+    <FineScript />
     <Footer />
   </div>
 )

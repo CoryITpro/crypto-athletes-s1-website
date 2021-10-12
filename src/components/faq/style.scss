@@ -2,7 +2,7 @@
 
 .faqs {
   width: 100%;
-  padding: 64px calc((100vw - 1280px) / 2);
+  padding: 64px calc((100vw - 1280px) / 2) 24px;
   background-color: $White-gray;
 
   & > span {
