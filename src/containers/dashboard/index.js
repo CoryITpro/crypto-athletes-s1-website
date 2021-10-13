@@ -46,7 +46,8 @@ const Dashboard = () => {
         let totalSupply = await getCurrentTotalSupply()
         setSoldOutCounts(totalSupply)
 
-        let maxSupply = await getCurrentMaxSupply()
+        // let maxSupply = await getCurrentMaxSupply()
+        let maxSupply = 800
         setMaxSupply(maxSupply)
 
         let maxMint = await getCurrentMaxMint()
