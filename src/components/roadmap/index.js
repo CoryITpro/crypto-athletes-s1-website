@@ -21,7 +21,7 @@ const Roadmap = () => (
     <span>Roadmap</span>
     {/* {generateRoadmap()} */}
     <div className="roadmap-item flex flex-column">
-      <div className="roadmap-item-percentage">Comming Soon</div>
+      <div className="roadmap-item-percentage">Coming Soon</div>
       <p></p>
       <p></p>
     </div>
