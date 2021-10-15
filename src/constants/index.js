@@ -69,7 +69,7 @@ export const FAQs = [
   {
     question: "Is the art generated or hand-made?",
     answer:
-      "All of the individual 9 traits for CryptoAthletes were hand drawn by our talented artist @Bakeneko.bakeneko. Then, those hand drawn traits are put into a random generation, creating millions of possible combinations. But only 10,000 will be seen hooping around the metaverse!",
+      "All of the individual 9 traits for CryptoAthletes were hand drawn by our talented artist @Bakeneko.bakeneko. Then, those hand drawn traits are put into a random generation, creating millions of possible combinations. But only 800 will be seen hooping around the metaverse!",
   },
   {
     question: "How can I Mint a CryptoAthlete?",

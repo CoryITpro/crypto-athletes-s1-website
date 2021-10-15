@@ -7,7 +7,7 @@ import Navbar from "components/navbar"
 import Hero from "components/hero"
 import Minter from "components/minter"
 import Learn from "components/learn"
-import Completion from "components/completion"
+// import Completion from "components/completion"
 import Rarity from "components/rarity"
 import FuturePlans from "components/future"
 import Roadmap from "components/roadmap"
@@ -114,7 +114,7 @@ const Dashboard = ({
       onMintCountChangeHandler={onMintCountChangeHandler}
     />
     <Learn />
-    <Completion />
+    {/* <Completion /> */}
     <Rarity />
     <FuturePlans />
     <Roadmap />

@@ -19,7 +19,12 @@ const Roadmap = () => (
       <img src={ARTWORK_ROADMAP_3} alt="artwork roadmap" />
     </div>
     <span>Roadmap</span>
-    {generateRoadmap()}
+    {/* {generateRoadmap()} */}
+    <div className="roadmap-item flex flex-column">
+      <div className="roadmap-item-percentage">Comming Soon</div>
+      <p></p>
+      <p></p>
+    </div>
   </div>
 )
 
