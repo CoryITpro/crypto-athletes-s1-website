@@ -75,6 +75,6 @@ export const FAQs = [
     question: "How can I Mint a CryptoAthlete?",
     answer:
       "We will have a presale of 500 pieces exclusive to members of our discord server . After our official launch you can mint them on our website. Once they are sold out you can purchase them on the secondary market on",
-    url: "https://opensea.io/collection/cryptoathletes",
+    url: "https://opensea.io/collection/cryptoathleteshoopers",
   },
 ]
