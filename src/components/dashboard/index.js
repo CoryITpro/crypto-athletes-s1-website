@@ -5,7 +5,7 @@ import "./style.scss"
 
 import Navbar from "components/navbar"
 import Hero from "components/hero"
-import Minter from "components/minter"
+// import Minter from "components/minter"
 import Learn from "components/learn"
 // import Completion from "components/completion"
 import Rarity from "components/rarity"
@@ -102,7 +102,7 @@ const Dashboard = ({
         onConnectWalletHandler={onConnectWalletHandler}
       />
     </div>
-    <Minter
+    {/* <Minter
       maxMint={maxMint}
       mintCount={mintCount}
       metadatas={metadatas}
@@ -112,7 +112,7 @@ const Dashboard = ({
       walletAddress={walletAddress}
       onMintHandler={onMintHandler}
       onMintCountChangeHandler={onMintCountChangeHandler}
-    />
+    /> */}
     <Learn />
     {/* <Completion /> */}
     <Rarity />

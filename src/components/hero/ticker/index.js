@@ -28,9 +28,10 @@ const Ticker = ({
       <div className="hero-wallet-purchase-ticker flex">
         {Object.keys(timeLeft).length === 0 ? (
           <>
-            <span>Total Minted</span>
-            <span className="hero-wallet-purchase-ticker-counts">{`${soldOutCounts} / ${maxSupply}`}</span>
-            {maxSupply === 0 ? (
+            <span>Sold Out!</span>
+            {/* <span>Total Minted</span> */}
+            {/* <span className="hero-wallet-purchase-ticker-counts">{`${soldOutCounts} / ${maxSupply}`}</span> */}
+            {/* {maxSupply === 0 ? (
               <p className="warning">Metamask has not installed</p>
             ) : soldOutCounts === maxSupply ? (
               <p>
@@ -41,7 +42,7 @@ const Ticker = ({
               <p>Connect your wallet to buy Crypto Athletes</p>
             ) : (
               <p>Mint Your Own Crypto Athlete</p>
-            )}
+            )} */}
           </>
         ) : (
           <span>
@@ -49,7 +50,11 @@ const Ticker = ({
           </span>
         )}
       </div>
-      {Object.keys(timeLeft).length === 0 ? (
+      <Button
+        to="https://opensea.io/collection/cryptoathleteshoopers"
+        children="Go To Opensea"
+      />
+      {/* {Object.keys(timeLeft).length === 0 ? (
         maxSupply === 0 ? (
           <Button to={"https://metamask.io/"} children="Install Metamask" />
         ) : (
@@ -78,7 +83,7 @@ const Ticker = ({
           to={"https://discord.gg/wS2cKz8E"}
           children="Join the Discord"
         />
-      )}
+      )} */}
     </div>
   )
 }
