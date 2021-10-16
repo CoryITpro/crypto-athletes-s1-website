@@ -1,4 +1,4 @@
-# Crypto Athletes - 800 Ballers in NFT on Ethereum.
+# Crypto Athletes - 850 Ballers in NFT on Ethereum.
 
 This project is for [Crypto Athletes](https://realcryptoathletes.com)
 
