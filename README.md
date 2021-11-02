@@ -5,23 +5,23 @@ This project is for [Crypto Athletes](https://realcryptoathletes.com)
 ## Deploy the ERC721 smart contract
 
 ```solidity
-  truffle migrate --network mainnet
+truffle migrate --network mainnet
 ```
 
 ## Verify the ERC721 smart contract
 
 ```solidity
-  truffle run verify CryptoAthletes --network mainnet
+truffle run verify CryptoAthletes --network mainnet
 ```
 
 ## Run the project as development
 
 ```javascript
-  npm start
+npm start
 ```
 
 ## Make production build
 
 ```javascript
-  npm run build
+npm run build
 ```
